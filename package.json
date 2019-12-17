@@ -1,0 +1,21 @@
+{
+  "name": "cookieconsent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify -p esmify src/main.js -o bundle.js",
+    "watch": "onchange 'src/*' --wait --verbose -- npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^16.5.0",
+    "cookie-universal": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "esmify": "^2.1.1",
+    "onchange": "^6.1.0"
+  }
+}

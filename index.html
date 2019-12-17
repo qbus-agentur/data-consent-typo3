@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>qbus consent dialog</title>
+    <style>
+      body {
+        margin: 0px;
+        font-family: sans-serif;
+        color: #212934;
+      }
+
+      .data-consent {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      .data-consent * + * {
+        margin-top: 1.25em;
+      }
+      .data-consent dialog {
+        top: 50%;
+        transform: translateY(-50%);
+
+        box-shadow: 0 1px 3px rgba(30,40,50,.75);
+        padding: 3.75em;
+        border: none;
+        box-sizing: border-box;
+        border-radius: 2px;
+        width: 48em;
+        min-height: 30em;
+        max-width: 80vw;
+        max-height: 80vh;
+
+        display: flex;
+        flex-flow: column;
+      }
+      .data-consent dialog:not([open]) {
+        display: none;
+      }
+      .data-consent dialog svg {
+        width: 4em;
+        height: 4em;
+        text-align: center;
+        display: block;
+        margin:  auto;
+      }
+      .data-consent dialog form {
+        display: flex;
+        flex-flow: column;
+        flex: 1 0 auto;
+      }
+      .data-consent dialog::backdrop {
+        background: rgba(30,40,50,.85);
+      }
+      .data-consent dialog form > section {
+        flex: 1 0 auto;
+       }
+      .data-consent dialog menu {
+        display: flex;
+        justify-content: flex-end;
+        margin-left: -5px;
+        margin-right: -5px;
+        padding: 0;
+      }
+      .data-consent dialog menu button {
+        margin-left: 5px;
+        margin-right: 5px;
+        flex: 0 1 50%;
+        padding: .75em 1.25em;
+        background: white;
+        border: 2px solid #1a3;
+        color: #1a3;
+        border-radius: 2px;
+        font-size: 1.2em;
+        cursor: pointer;
+        position: relative;
+      }
+      .data-consent dialog menu button:hover:before,
+      .data-consent dialog menu button:focus:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,.1);
+      }
+      .data-consent dialog menu button + button {
+        margin-top: 0;
+      }
+      .data-consent dialog menu button:last-child {
+        background: #1a3;
+        color: white;
+       }
+      .data-consent h2 {
+        font-size: 2.125em;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="bundle.js"></script>
+    <div id="banner"></div>
+    <script>
+      consent.launch();
+    </script>
+  </body>
+</html>
+
