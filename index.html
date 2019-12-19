@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,14 +11,17 @@
         color: #212934;
       }
 
-      .data-consent {
+      dialog.data-consent {
         font-size: 1rem;
         line-height: 1.5;
       }
-      .data-consent * + * {
+      dialog.data-consent * {
+        box-sizing: border-box;
+      }
+      dialog.data-consent * + * {
         margin-top: 1.25em;
       }
-      .data-consent dialog {
+      dialog.data-consent {
         top: 50%;
         transform: translateY(-50%);
 
@@ -35,49 +38,93 @@
         display: flex;
         flex-flow: column;
       }
-      .data-consent dialog:not([open]) {
+      dialog.data-consent:not([open]) {
         display: none;
       }
-      .data-consent dialog svg {
+      dialog.data-consent svg {
         width: 4em;
         height: 4em;
         text-align: center;
         display: block;
         margin:  auto;
       }
-      .data-consent dialog form {
+      dialog.data-consent form {
         display: flex;
         flex-flow: column;
         flex: 1 0 auto;
       }
-      .data-consent dialog::backdrop {
+      dialog.data-consent::backdrop {
         background: rgba(30,40,50,.85);
       }
-      .data-consent dialog form > section {
+      dialog.data-consent form > section {
         flex: 1 0 auto;
-       }
-      .data-consent dialog menu {
+      }
+      dialog.data-consent form label {
+        display: block;
+        font-weight: bold;
+        position: relative;
+        padding-left: 4em;
+        width: 21em;
+        user-select: none;
+      }
+      dialog.data-consent form label input {
+        position: absolute;
+        left: 24px;
+      }
+      dialog.data-consent form .data-consent-options {
+        padding: 1.5em 3em .5em;
+      }
+      dialog.data-consent form .data-consent-options label {
+        margin: 0 auto;
+      }
+      dialog.data-consent menu {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-evenly;
         margin-left: -5px;
         margin-right: -5px;
+        margin-bottom: 0;
         padding: 0;
+        color: #259D15;
       }
-      .data-consent dialog menu button {
+      dialog.data-consent menu > * + * {
+        margin-top: 0;
+      }
+      dialog.data-consent form .data-consent-button-group {
+        border: 1px solid currentColor;
+        display: flex;
+      }
+      dialog.data-consent form .data-consent-button-group > * + *{
+        margin-top: 0;
+      }
+      dialog.data-consent form .data-consent-button-group > span {
+        border-right: 1px solid currentColor;
+        display: flex;
+        align-items: center;
+        width: 3em;
+        flex: 0 0 3em;
+        justify-content: center;
+      }
+      dialog.data-consent form .data-consent-button-group > button {
+        flex: 1 0 auto;
+        margin: 0;
+        border: 0;
+      }
+      dialog.data-consent menu button {
         margin-left: 5px;
         margin-right: 5px;
         flex: 0 1 50%;
         padding: .75em 1.25em;
         background: white;
-        border: 2px solid #1a3;
-        color: #1a3;
+        border: 1px solid currentColor;
+        color: currentColor;
         border-radius: 2px;
         font-size: 1.2em;
         cursor: pointer;
         position: relative;
+        margin-top: 0;
       }
-      .data-consent dialog menu button:hover:before,
-      .data-consent dialog menu button:focus:before {
+      dialog.data-consent menu button:hover:before,
+      dialog.data-consent menu button:focus:before {
         content: '';
         display: block;
         position: absolute;
@@ -87,26 +134,101 @@
         bottom: 0;
         background: rgba(0,0,0,.1);
       }
-      .data-consent dialog menu button + button {
+      dialog.data-consent menu button + button {
         margin-top: 0;
       }
-      .data-consent dialog menu button:last-child {
-        background: #1a3;
+      dialog.data-consent menu button[data-selected='all'] {
+        background: #259D15;
         color: white;
+      }
+      dialog.data-consent menu button:last-child {
        }
       .data-consent h2 {
         font-size: 2.125em;
         text-align: center;
       }
+
+      .embed-responive {
+        position: relative;
+        display: block;
+        height: 0;
+        padding: 0;
+
+      }
+      .youtube .play-button svg, .youtube iframe {
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+      }
+      .youtube .play-button {
+        left: 50%;
+        top: 50%;
+        width: 68px;
+        height: 48px;
+        margin-left: -34px;
+        margin-top: -24px;
+        -webkit-transition: opacity .25s cubic-bezier(0,0,.2,1);
+        -o-transition: opacity .25s cubic-bezier(0,0,.2,1);
+        transition: opacity .25s cubic-bezier(0,0,.2,1);
+        z-index: 1;
+      }
+      .youtube.embed-responsive img {
+        width: 100%;
+        height: auto;
+        top: -16.82%;
+        left: 0;
+      }
+      .youtube .play-button, .youtube .play-button svg, .youtube .play-button:before, .youtube iframe, .youtube img {
+        position: absolute;
+      }
+
+      .youtube, .youtube .play-button, .youtube img {
+        cursor: pointer;
+     }
     </style>
   </head>
 
   <body>
+    <div style="width:400px;height:500px;">
+    <div class="youtube embed-responsive" data-youtube="https://youtu.be/HoyxqHInIGI" style="padding-top: 56.25%;"><div class="play-button"><svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%"><path class="ytp-large-play-button-bg" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#212121" fill-opacity="0.8"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg></div><img src="https://i.ytimg.com/vi/HoyxqHInIGI/hqdefault.jpg"></div>
+    </div>
+
+    <template id="cookie-modal">
+      <dialog class="data-consent">
+        <form method="dialog">
+          <section>
+            <svg viewBox="0 0 24 24">
+              <path fill="currentColor" d="M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A9,9 0 0,0 21,12C21,11.5 20.96,11 20.87,10.5C20.6,10 20,10 20,10H18V9C18,8 17,8 17,8H15V7C15,6 14,6 14,6H13V4C13,3 12,3 12,3M9.5,6A1.5,1.5 0 0,1 11,7.5A1.5,1.5 0 0,1 9.5,9A1.5,1.5 0 0,1 8,7.5A1.5,1.5 0 0,1 9.5,6M6.5,10A1.5,1.5 0 0,1 8,11.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 5,11.5A1.5,1.5 0 0,1 6.5,10M11.5,11A1.5,1.5 0 0,1 13,12.5A1.5,1.5 0 0,1 11.5,14A1.5,1.5 0 0,1 10,12.5A1.5,1.5 0 0,1 11.5,11M16.5,13A1.5,1.5 0 0,1 18,14.5A1.5,1.5 0 0,1 16.5,16H16.5A1.5,1.5 0 0,1 15,14.5H15A1.5,1.5 0 0,1 16.5,13M11,16A1.5,1.5 0 0,1 12.5,17.5A1.5,1.5 0 0,1 11,19A1.5,1.5 0 0,1 9.5,17.5A1.5,1.5 0 0,1 11,16Z"></path>
+            </svg>
+            <h2>Daten&shy;verarbeitungs&shy;einstellungen</h2>
+            <p>Our site is supported by advertising and we and our partners use technology such as cookies on our site to personalize content and ads, provide social media features, and analyze our traffic. Click "I Accept" below to consent to the use of this technology across the web. You can change your mind and change your consent choices at any time by returning to this site and clicking the Privacy Choices link.
+            </p><p>By choosing I Accept below you are also helping to support our site and improve your browsing experience. </p>
+            <div class="data-consent-options">
+              <label>
+                Erforderliche Cookies
+                <input type="checkbox" value="essential" required="">
+              </label>
+
+              <label>
+                Funktionelle Cookies
+                <input type="checkbox" value="functional">
+              </label>
+              <label>
+                Marketing Cookies
+                <input type="checkbox" value="marketing">
+              </label>
+            </div>
+          </section>
+          <menu>
+            <!--<button type="submit" value="decline">Ablehnen</button>-->
+            <div class="data-consent-button-group"><span class="checkbox-button-addon"><input type="checkbox" required="" class="data-consent-accept-all"></span><button type="submit" value="accept-all">Einstellungen akzeptieren</button></div>
+          </menu>
+        </form>
+      </dialog>
+    </template>
     <script src="bundle.js"></script>
-    <div id="banner"></div>
-    <script>
-      consent.launch();
-    </script>
+    <script>consent.launch()</script>
   </body>
 </html>
 
