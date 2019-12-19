@@ -27,6 +27,7 @@
         background: white;
         color: black;
         display: block;
+        overflow: auto;
       }
 
       dialog.data-consent:not([open]) {
@@ -228,6 +229,11 @@
 
       .youtube, .youtube .play-button, .youtube img {
         cursor: pointer;
+     }
+
+     template {
+       // For IE11
+       display: none;
      }
     </style>
   </head>
