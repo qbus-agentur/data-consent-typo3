@@ -1,5 +1,6 @@
 import Cookie from 'cookie-universal'
 import dialogPolyfill from 'dialog-polyfill'
+import Promise from 'es6-promise'
 
 var cookies = Cookie();
 //var promise = new Promise()
