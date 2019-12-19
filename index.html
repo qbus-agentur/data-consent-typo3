@@ -11,6 +11,47 @@
         color: #212934;
       }
 
+      /* From dialog-polyfill.css */
+      dialog.data-consent {
+        position: absolute;
+        left: 0; right: 0;
+        width: -moz-fit-content;
+        width: -webkit-fit-content;
+        width: fit-content;
+        height: -moz-fit-content;
+        height: -webkit-fit-content;
+        height: fit-content;
+        margin: auto;
+        border: solid;
+        padding: 1em;
+        background: white;
+        color: black;
+        display: block;
+      }
+
+      dialog.data-consent:not([open]) {
+        display: none;
+      }
+
+      dialog.data-consent + .backdrop {
+        position: fixed;
+        top: 0; right: 0; bottom: 0; left: 0;
+        background: rgba(0,0,0,0.1);
+      }
+
+      ._dialog_overlay {
+        position: fixed;
+        top: 0; right: 0; bottom: 0; left: 0;
+      }
+
+      dialog.data-consent.fixed {
+        position: fixed;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+      /* End dialog-polyfill.css */
+
+
       dialog.data-consent {
         font-size: 1rem;
         line-height: 1.5;
@@ -53,7 +94,9 @@
         flex-flow: column;
         flex: 1 0 auto;
       }
-      dialog.data-consent::backdrop {
+      dialog.data-consent::backdrop,
+      /* .backdrop class is for dialog-polyfill */
+      dialog.data-consent + .backdrop {
         background: rgba(30,40,50,.85);
       }
       dialog.data-consent form > section {
