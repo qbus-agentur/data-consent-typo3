@@ -76,6 +76,12 @@ function createDialog() {
             cookies.set('cookie-consent', state);
             firePromises(state);
             break;
+        default:
+            // Reopen the modal if it wasn't submitted.
+            // This is ugly, but there is no other way to prevent
+            // the modal from being closed by pressing the 'Escape' key.
+            dialog.showModal();
+            break;
         }
     });
 
