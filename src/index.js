@@ -11,7 +11,8 @@ var state = {
     marketing: false
 };
 
-var acceptListeners = {
+var listeners = [];
+var specificListeners = {
     essential: [],
     functional: [],
     statistics: [],
@@ -19,23 +20,40 @@ var acceptListeners = {
 };
 
 export function isAccepted(type) {
-    return new Promise(function(resolve, reject) {
-        acceptListeners[type].push(resolve);
-    });
+    if (type) {
+        return new Promise(function(resolve, reject) {
+            specificListeners[type].push(resolve);
+        });
+    } else {
+        return new Promise(function(resolve, reject) {
+            listeners.push(resolve);
+        });
+    }
+};
+
+export function launch() {
+    state = cookies.get('cookie-consent');
+    if (state) {
+        firePromises(state);
+    } else {
+        createDialog();
+    }
 };
 
 function firePromises(state) {
-    Object.keys(acceptListeners).map(function(type, index) {
+    listeners.forEach(function(resolve) {
+        resolve(state);
+    });
+    Object.keys(specificListeners).map(function(type, index) {
         if (state[type]) {
-            acceptListeners[type].forEach(function(resolve) {
+            specificListeners[type].forEach(function(resolve) {
                 resolve(type);
             });
         }
     });
 }
 
-function createDialog()
-{
+function createDialog() {
     var dialog = getDialogElement();
 
     dialog.querySelector('.data-consent-accept-all').addEventListener('change', function() {
@@ -50,17 +68,9 @@ function createDialog()
     dialog.addEventListener('close', function() {
         switch (dialog.returnValue) {
         case 'accept':
-            state = {
-                essential: false,
-                functional: false,
-                statistics: false,
-                marketing: false
-            };
-            Object.keys(acceptListeners).map(function(type, index) {
+            Object.keys(state).map(function(type, index) {
                 var input = dialog.querySelector('input[type="checkbox"][value="' + type + '"]');
-                if (input && input.checked) {
-                    state[type] = true;
-                }
+                state[type] = (input && input.checked);
             });
             cookies.set('cookie-consent', state);
             firePromises(state);
@@ -72,17 +82,7 @@ function createDialog()
     dialog.showModal();
 }
 
-export function launch() {
-    state = cookies.get('cookie-consent');
-    if (state) {
-        firePromises(state);
-    } else {
-        createDialog();
-    }
-};
-
-function getDialogElement()
-{
+function getDialogElement() {
     var template = document.querySelector('#cookie-modal');
     var dialog;
     if (template.content) {
