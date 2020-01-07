@@ -32,9 +32,9 @@ export function isAccepted(type) {
 };
 
 export function launch() {
-    cookies = cookies.get('cookie-consent');
-    if (cookies) {
-        state = cookies;
+    var cookie = cookies.get('cookie-consent');
+    if (cookie) {
+        state = cookie;
         firePromises(state);
     } else {
         createDialog();
