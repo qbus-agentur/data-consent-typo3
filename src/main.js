@@ -1,6 +1,9 @@
 var consent = require('./index');
 
-consent.isAccepted('youtube').then(function(arg) {
+consent.isAccepted('essential').then(function(arg) {
+	alert('Essential cookies have been enabled');
+});
+consent.isAccepted('marketing').then(function(arg) {
 	alert(arg);
 });
 

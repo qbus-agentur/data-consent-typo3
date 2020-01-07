@@ -5,38 +5,34 @@ import Promise from 'es6-promise'
 var cookies = Cookie();
 //var promise = new Promise()
 var state = {
+    essential: false,
     functional: false,
     statistics: false,
     marketing: false
 };
-var acceptListeners = [];
 
-export function isAccepted() {
+var acceptListeners = {
+    essential: [],
+    functional: [],
+    statistics: [],
+    marketing: [],
+};
+
+export function isAccepted(type) {
     return new Promise(function(resolve, reject) {
-        acceptListeners.push(resolve);
+        acceptListeners[type].push(resolve);
     });
 };
 
-export function launch() {
-    // todo: read cookie
-    //
-
-    if (cookies.get('cookie-consent')) {
-        state.functional = true;
-        state.statistics = true;
-        state.marketing = true;
-        // Fire promise change
-
-    } else {
-        createDialog();
-    }
-
-    //alert('foo');
-    //return new Promise(
-    //);
-
-
-};
+function firePromises(state) {
+    Object.keys(acceptListeners).map(function(type, index) {
+        if (state[type]) {
+            acceptListeners[type].forEach(function(resolve) {
+                resolve(type);
+            });
+        }
+    });
+}
 
 function createDialog()
 {
@@ -47,16 +43,27 @@ function createDialog()
         Array.prototype.forEach.call(dialog.querySelectorAll('input[type=checkbox]'), function(el) {
             el.checked = checked;
         });
-        dialog.querySelector('button[type=submit][value=accept-all]').setAttribute('data-selected', checked ? 'all' : 'some');
+        dialog.querySelector('button[type=submit][value=accept]').setAttribute('data-selected', checked ? 'all' : 'some');
 
     });
 
     dialog.addEventListener('close', function() {
         switch (dialog.returnValue) {
-        case 'accept-all':
-            acceptListeners.forEach(function(resolve) {
-                resolve(dialog.returnValue);
+        case 'accept':
+            state = {
+                essential: false,
+                functional: false,
+                statistics: false,
+                marketing: false
+            };
+            Object.keys(acceptListeners).map(function(type, index) {
+                var input = dialog.querySelector('input[type="checkbox"][value="' + type + '"]');
+                if (input && input.checked) {
+                    state[type] = true;
+                }
             });
+            cookies.set('cookie-consent', state);
+            firePromises(state);
             break;
         }
     });
@@ -64,6 +71,15 @@ function createDialog()
     document.body.appendChild(dialog);
     dialog.showModal();
 }
+
+export function launch() {
+    state = cookies.get('cookie-consent');
+    if (state) {
+        firePromises(state);
+    } else {
+        createDialog();
+    }
+};
 
 function getDialogElement()
 {
