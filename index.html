@@ -57,7 +57,9 @@
         font-size: 1rem;
         line-height: 1.5;
       }
-      dialog.data-consent * {
+      dialog.data-consent *,
+      dialog.data-consent *:before,
+      dialog.data-consent *:after {
         box-sizing: border-box;
       }
       dialog.data-consent * + * {
@@ -81,7 +83,7 @@
         flex-flow: column;
       }
 
-      dialog.data-consent:after {
+      dialog.data-consent form:after {
         /* bottom padding as pseduo element to fix scrolling in IE11, see https://stackoverflow.com/a/48687727 */
         content: '';
         display: block;
@@ -144,6 +146,7 @@
       dialog.data-consent form .data-consent-button-group {
         border: 1px solid currentColor;
         display: flex;
+        border-radius: 5px;
       }
       dialog.data-consent form .data-consent-button-group > * + *{
         margin-top: 0;
@@ -160,6 +163,8 @@
         flex: 1 0 auto;
         margin: 0;
         border: 0;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
       }
       dialog.data-consent menu button {
         margin-left: 5px;
@@ -194,12 +199,11 @@
         color: white;
       }
       dialog.data-consent menu button:last-child {
-       }
+      }
       .data-consent h2 {
         font-size: 2.125em;
         text-align: center;
       }
-
       .embed-responsive {
         position: relative;
         display: block;
@@ -237,12 +241,40 @@
 
       .youtube, .youtube .play-button, .youtube img {
         cursor: pointer;
-     }
+      }
 
-     template {
-       // For IE11
-       display: none;
-     }
+      template {
+        // For IE11
+        display: none;
+      }
+
+      .notice {
+        font-weight: normal;
+      }
+      .notice:before {
+        content: 'i';
+        display: inline-block;
+        border-radius: 50%;
+        border: 1px solid currentColor;
+        height: 18px;
+        width: 18px;
+        line-height: 18px;
+        text-align: center;
+        color: #000;
+      }
+      .notice .notice-content {
+        display: none;
+      }
+      .notice:hover .notice-content {
+        display: block;
+      }
+      .notice-content {
+        position:absolute;
+        background: white;
+        box-shadow: 0 1px 3px rgba(30,40,50,.75);
+        padding: 1em;
+        transform: translateY(calc(-100% - 18px));
+      }
     </style>
   </head>
 
@@ -259,6 +291,7 @@
               <path fill="currentColor" d="M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A9,9 0 0,0 21,12C21,11.5 20.96,11 20.87,10.5C20.6,10 20,10 20,10H18V9C18,8 17,8 17,8H15V7C15,6 14,6 14,6H13V4C13,3 12,3 12,3M9.5,6A1.5,1.5 0 0,1 11,7.5A1.5,1.5 0 0,1 9.5,9A1.5,1.5 0 0,1 8,7.5A1.5,1.5 0 0,1 9.5,6M6.5,10A1.5,1.5 0 0,1 8,11.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 5,11.5A1.5,1.5 0 0,1 6.5,10M11.5,11A1.5,1.5 0 0,1 13,12.5A1.5,1.5 0 0,1 11.5,14A1.5,1.5 0 0,1 10,12.5A1.5,1.5 0 0,1 11.5,11M16.5,13A1.5,1.5 0 0,1 18,14.5A1.5,1.5 0 0,1 16.5,16H16.5A1.5,1.5 0 0,1 15,14.5H15A1.5,1.5 0 0,1 16.5,13M11,16A1.5,1.5 0 0,1 12.5,17.5A1.5,1.5 0 0,1 11,19A1.5,1.5 0 0,1 9.5,17.5A1.5,1.5 0 0,1 11,16Z"></path>
             </svg>
             <h2>Daten&shy;verarbeitungs&shy;einstellungen</h2>
+            <h2>Privatsphäre&shy;einstellungen</h2>
             <p>Our site is supported by advertising and we and our partners use technology such as cookies on our site to personalize content and ads, provide social media features, and analyze our traffic. Click "I Accept" below to consent to the use of this technology across the web. You can change your mind and change your consent choices at any time by returning to this site and clicking the Privacy Choices link.
             </p><p>By choosing I Accept below you are also helping to support our site and improve your browsing experience. </p>
             <div class="data-consent-options">
@@ -269,6 +302,11 @@
 
               <label>
                 Funktionelle Cookies
+                <span class="notice">
+                  <span class="notice-content">
+                    Cookies dieser Kategorie ermöglichen es uns, die Nutzung der Website zu analysieren und die Leistung zu messen. Sie tragen zudem zur Bereitstellung nützlicher Funktionen bei. Das Deaktivieren dieser Cookies kann zu einem langsameren Seitenaufbau führen. Einige Inhalte – z.B. Videos – können nicht mehr dargestellt werden. Außerdem erhalten Sie keine passenden Artikelempfehlungen mehr.
+                  </span>
+                </span>
                 <input type="checkbox" value="functional">
               </label>
               <label>
@@ -278,6 +316,10 @@
               <label>
                 Marketing Cookies
                 <input type="checkbox" value="marketing">
+
+                <span class="notice">
+                  <span class="notice-content">
+                    Marketing-Cookies werden von Partnern gesetzt, die ihren Sitz auch in Nicht-EU-Ländern haben können. Diese Cookies erfassen Informationen, mithilfe derer die Anzeige personalisierter Werbung oder anderer interessenbasierter Inhalte ermöglicht wird. Diese Partner führen die Informationen unter Umständen mit weiteren Daten zusammen. Durch Deaktivieren der Marketing-Cookies wir Ihnen Werbung angezeigt, die für Sie weniger interessant ist.
               </label>
             </div>
           </section>
