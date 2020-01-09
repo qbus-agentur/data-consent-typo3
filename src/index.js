@@ -1,92 +1,97 @@
-import Cookie from 'cookie-universal'
+//import Cookie from 'cookie-universal'
 import dialogPolyfill from 'dialog-polyfill'
 import Promise from 'es6-promise'
+import Storage from './storage'
 
-var cookies = Cookie();
-//var promise = new Promise()
-var state = {
-    essential: false,
-    functional: false,
-    statistics: false,
-    marketing: false
-};
+function Consent() {
+    this.storage = new Storage('localstorage');
+    this.listeners = [];
+    this.specificListeners = {
+        essential: [],
+        functional: [],
+        statistics: [],
+        marketing: [],
+    };
+    this.state = {
+        essential: false,
+        functional: false,
+        statistics: false,
+        marketing: false
+    };
+    this.dialog = null;
+}
 
-var listeners = [];
-var specificListeners = {
-    essential: [],
-    functional: [],
-    statistics: [],
-    marketing: [],
-};
-
-export function isAccepted(type) {
+Consent.prototype.isAccepted = function(type) {
+    var self = this;
     if (type) {
         return new Promise(function(resolve, reject) {
-            specificListeners[type].push(resolve);
+            self.specificListeners[type].push(resolve);
         });
     } else {
         return new Promise(function(resolve, reject) {
-            listeners.push(resolve);
+            self.listeners.push(resolve);
         });
     }
 };
 
-export function launch() {
-    var cookie = cookies.get('cookie-consent');
-    if (cookie) {
-        state = cookie;
-        firePromises(state);
+Consent.prototype.launch = function() {
+    var storedState = this.storage.get('data-consent');
+    if (storedState) {
+        this.state = storedState;
+        this.firePromises();
     } else {
-        createDialog();
+        this.createDialog();
     }
 };
 
-function firePromises(state) {
-    listeners.forEach(function(resolve) {
-        resolve(state);
+Consent.prototype.firePromises = function() {
+    var self = this;
+    this.listeners.forEach(function(resolve) {
+        resolve(self.state);
     });
-    Object.keys(specificListeners).map(function(type, index) {
-        if (state[type]) {
-            specificListeners[type].forEach(function(resolve) {
+    Object.keys(this.specificListeners).map(function(type, index) {
+        if (self.state[type]) {
+            self.specificListeners[type].forEach(function(resolve) {
                 resolve(type);
             });
         }
     });
 }
 
-function createDialog() {
-    var dialog = getDialogElement();
+Consent.prototype.createDialog = function() {
+    var self = this;
+    this.dialog = getDialogElement();
 
-    dialog.querySelector('.data-consent-accept-all').addEventListener('change', function() {
+    this.dialog.querySelector('.data-consent-accept-all').addEventListener('change', function() {
         var checked = this.checked;
-        Array.prototype.forEach.call(dialog.querySelectorAll('input[type=checkbox]'), function(el) {
+        Array.prototype.forEach.call(self.dialog.querySelectorAll('input[type=checkbox]'), function(el) {
             el.checked = checked;
         });
-        dialog.querySelector('button[type=submit][value=accept]').setAttribute('data-selected', checked ? 'all' : 'some');
+        self.dialog.querySelector('button[type=submit][value=accept]').setAttribute('data-selected', checked ? 'all' : 'some');
 
     });
 
-    dialog.addEventListener('close', function() {
-        switch (dialog.returnValue) {
+    this.dialog.addEventListener('close', function() {
+        switch (self.dialog.returnValue) {
         case 'accept':
-            Object.keys(state).map(function(type, index) {
-                var input = dialog.querySelector('input[type="checkbox"][value="' + type + '"]');
-                state[type] = (input && input.checked);
+            Object.keys(self.state).map(function(type, index) {
+                var input = self.dialog.querySelector('input[type="checkbox"][value="' + type + '"]');
+                self.state[type] = (input && input.checked);
             });
-            cookies.set('cookie-consent', state);
-            firePromises(state);
+            self.storage.set('data-consent', self.state);
+            self.firePromises();
             break;
         default:
             // Reopen the modal if it wasn't submitted.
             // This is ugly, but there is no other way to prevent
             // the modal from being closed by pressing the 'Escape' key.
-            dialog.showModal();
+            self.dialog.showModal();
             break;
         }
     });
 
-    document.body.appendChild(dialog);
-    dialog.showModal();
+    document.body.appendChild(this.dialog);
+    this.dialog.showModal();
 }
 
 function getDialogElement() {
@@ -104,3 +109,5 @@ function getDialogElement() {
 
     return dialog;
 }
+
+export default Consent;

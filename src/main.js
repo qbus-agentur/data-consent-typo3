@@ -1,4 +1,6 @@
-var consent = require('./index');
+var Consent = require('./index').default;
+
+var consent = new Consent();
 
 consent.isAccepted().then(function(state) {
         alert(JSON.stringify(state));
