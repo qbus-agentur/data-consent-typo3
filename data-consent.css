@@ -206,7 +206,7 @@ dialog.data-consent menu button[data-selected='all'] {
 }
 dialog.data-consent menu button:last-child {
 }
-.data-consent h2 {
+dialog.data-consent h2 {
 	font-size: 2.125em;
 	text-align: center;
 }
@@ -216,10 +216,10 @@ template {
 	display: none;
 }
 
-.notice {
+dialog.data-consent .notice {
 	font-weight: normal;
 }
-.notice svg {
+dialog.data-consent .notice svg {
 	height: 1.25em;
 	width: 1.25em;
 	position: relative;
@@ -227,7 +227,7 @@ template {
 	cursor: pointer;
 }
 /*
-.notice:before {
+dialog.data-consent .notice:before {
 content: 'i';
 display: inline-block;
 border-radius: 50%;
@@ -239,13 +239,13 @@ text-align: center;
 color: #000;
 }
  */
-.notice .notice-content {
+dialog.data-consent .notice .notice-content {
 	display: none;
 }
-.notice:hover .notice-content {
+dialog.data-consent .notice:hover .notice-content {
 	display: block;
 }
-.notice-content {
+dialog.data-consent .notice-content {
 	position:absolute;
 	background: white;
 	font-size: 0.8em;
