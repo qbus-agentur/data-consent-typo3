@@ -228,15 +228,15 @@ dialog.data-consent .notice svg {
 }
 /*
 dialog.data-consent .notice:before {
-content: 'i';
-display: inline-block;
-border-radius: 50%;
-border: 1px solid currentColor;
-height: 18px;
-width: 18px;
-line-height: 18px;
-text-align: center;
-color: #000;
+	content: 'i';
+	display: inline-block;
+	border-radius: 50%;
+	border: 1px solid currentColor;
+	height: 18px;
+	width: 18px;
+	line-height: 18px;
+	text-align: center;
+	color: #000;
 }
  */
 dialog.data-consent .notice .notice-content {
