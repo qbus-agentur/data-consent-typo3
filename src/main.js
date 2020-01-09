@@ -5,13 +5,13 @@ var consent = new Consent({
 });
 
 consent.isAccepted().then(function(state) {
-        console.log(JSON.stringify(state));
+    console.log(JSON.stringify(state));
 });
 consent.isAccepted('essential').then(function(type) {
-	console.log('Essential cookies have been enabled');
+    console.log('Essential cookies have been enabled');
 });
 consent.isAccepted('marketing').then(function(state) {
-	console.log('marketing is enabled, state: ' . JSON.stringify(state));
+    console.log('marketing is enabled, state: ' . JSON.stringify(state));
 });
 
 window.consent = consent;
