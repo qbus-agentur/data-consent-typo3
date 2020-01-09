@@ -93,7 +93,7 @@
       dialog.data-consent:not([open]) {
         display: none;
       }
-      dialog.data-consent svg {
+      dialog.data-consent section > svg {
         width: 4em;
         height: 4em;
         text-align: center;
@@ -124,12 +124,16 @@
       dialog.data-consent form label input {
         position: absolute;
         left: 24px;
+        top: 5px;
       }
       dialog.data-consent form .data-consent-options {
         padding: 1.5em 3em .5em;
       }
       dialog.data-consent form .data-consent-options label {
         margin: 0 auto;
+      }
+      dialog.data-consent form .data-consent-options input {
+        margin: 0;
       }
       dialog.data-consent menu {
         display: flex;
@@ -251,6 +255,14 @@
       .notice {
         font-weight: normal;
       }
+      .notice svg {
+        height: 1.25em;
+        width: 1.25em;
+        position: relative;
+        top: 4px;
+        cursor: pointer;
+      }
+      /*
       .notice:before {
         content: 'i';
         display: inline-block;
@@ -262,6 +274,7 @@
         text-align: center;
         color: #000;
       }
+      */
       .notice .notice-content {
         display: none;
       }
@@ -271,9 +284,13 @@
       .notice-content {
         position:absolute;
         background: white;
+        font-size: 0.8em;
         box-shadow: 0 1px 3px rgba(30,40,50,.75);
         padding: 1em;
-        transform: translateY(calc(-100% - 18px));
+        margin: 0 !important;
+        transform: translateY(calc(-100% - 23px));
+        left: 10px;
+        right: 0;
       }
     </style>
   </head>
@@ -290,36 +307,51 @@
             <svg viewBox="0 0 24 24">
               <path fill="currentColor" d="M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A9,9 0 0,0 21,12C21,11.5 20.96,11 20.87,10.5C20.6,10 20,10 20,10H18V9C18,8 17,8 17,8H15V7C15,6 14,6 14,6H13V4C13,3 12,3 12,3M9.5,6A1.5,1.5 0 0,1 11,7.5A1.5,1.5 0 0,1 9.5,9A1.5,1.5 0 0,1 8,7.5A1.5,1.5 0 0,1 9.5,6M6.5,10A1.5,1.5 0 0,1 8,11.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 5,11.5A1.5,1.5 0 0,1 6.5,10M11.5,11A1.5,1.5 0 0,1 13,12.5A1.5,1.5 0 0,1 11.5,14A1.5,1.5 0 0,1 10,12.5A1.5,1.5 0 0,1 11.5,11M16.5,13A1.5,1.5 0 0,1 18,14.5A1.5,1.5 0 0,1 16.5,16H16.5A1.5,1.5 0 0,1 15,14.5H15A1.5,1.5 0 0,1 16.5,13M11,16A1.5,1.5 0 0,1 12.5,17.5A1.5,1.5 0 0,1 11,19A1.5,1.5 0 0,1 9.5,17.5A1.5,1.5 0 0,1 11,16Z"></path>
             </svg>
-            <h2>Daten&shy;verarbeitungs&shy;einstellungen</h2>
+            <!--<h2>Daten&shy;verarbeitungs&shy;einstellungen</h2>-->
             <h2>Privatsphäre&shy;einstellungen</h2>
             <p>Our site is supported by advertising and we and our partners use technology such as cookies on our site to personalize content and ads, provide social media features, and analyze our traffic. Click "I Accept" below to consent to the use of this technology across the web. You can change your mind and change your consent choices at any time by returning to this site and clicking the Privacy Choices link.
             </p><p>By choosing I Accept below you are also helping to support our site and improve your browsing experience. </p>
             <div class="data-consent-options">
               <label>
                 Erforderliche Cookies
+                <span class="notice">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                  <span class="notice-content">
+                    Cookies dieser Kategorie sind für die Grundfunktionen der Website erforderlich. Sie dienen der sicheren und bestimmungsgemäßen Nutzung und sind daher nicht deaktivierbar.
+                  </span>
+                </span>
                 <input type="checkbox" value="essential" required="">
               </label>
 
               <label>
                 Funktionelle Cookies
                 <span class="notice">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
                   <span class="notice-content">
-                    Cookies dieser Kategorie ermöglichen es uns, die Nutzung der Website zu analysieren und die Leistung zu messen. Sie tragen zudem zur Bereitstellung nützlicher Funktionen bei. Das Deaktivieren dieser Cookies kann zu einem langsameren Seitenaufbau führen. Einige Inhalte – z.B. Videos – können nicht mehr dargestellt werden. Außerdem erhalten Sie keine passenden Artikelempfehlungen mehr.
+                    Cookies dieser Kategorie ermöglichen uns die Bereitstellung nützlicher Funktionen bei. Das Deaktivieren dieser Cookies kann zu einem langsameren Seitenaufbau führen, optionale Einstellungen wie Schriftgröße oder Sprache werden nicht gespeichert.
                   </span>
                 </span>
                 <input type="checkbox" value="functional">
               </label>
               <label>
                 Statistik Cookies
+                <span class="notice">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                  <span class="notice-content">
+                    Cookies dieser Kategorie ermöglichen es uns, die Nutzung der Website zu analysieren und die Leistung zu messen.
+                  </span>
+                </span>
                 <input type="checkbox" value="statistics">
               </label>
               <label>
                 Marketing Cookies
-                <input type="checkbox" value="marketing">
-
                 <span class="notice">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
                   <span class="notice-content">
                     Marketing-Cookies werden von Partnern gesetzt, die ihren Sitz auch in Nicht-EU-Ländern haben können. Diese Cookies erfassen Informationen, mithilfe derer die Anzeige personalisierter Werbung oder anderer interessenbasierter Inhalte ermöglicht wird. Diese Partner führen die Informationen unter Umständen mit weiteren Daten zusammen. Durch Deaktivieren der Marketing-Cookies wir Ihnen Werbung angezeigt, die für Sie weniger interessant ist.
+                  </span>
+                </span>
+                <input type="checkbox" value="marketing">
               </label>
             </div>
           </section>
