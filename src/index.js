@@ -3,7 +3,8 @@ import dialogPolyfill from 'dialog-polyfill'
 import Promise from 'es6-promise'
 import Storage from './storage'
 
-function Consent() {
+function Consent(options) {
+    this.renderBanner = options.banner || false;
     this.storage = new Storage('localstorage');
     this.listeners = [];
     this.specificListeners = {
@@ -44,6 +45,14 @@ Consent.prototype.launch = function() {
     }
 };
 
+Consent.prototype.forceOpen = function() {
+    if (this.dialog === null) {
+        this.createDialog();
+    } else {
+        this.dialog.showModal();
+    }
+};
+
 Consent.prototype.firePromises = function() {
     var self = this;
     this.listeners.forEach(function(resolve) {
@@ -62,6 +71,12 @@ Consent.prototype.createDialog = function() {
     var self = this;
     this.dialog = getDialogElement();
 
+    if (this.renderBanner) {
+        this.dialog.setAttribute('class', this.dialog.getAttribute('class') + ' banner');
+    } else {
+        this.dialog.setAttribute('class', dialog.getAttribute('class').replace(' banner', ''));
+    }
+
     this.dialog.querySelector('.data-consent-accept-all').addEventListener('change', function() {
         var checked = this.checked;
         Array.prototype.forEach.call(self.dialog.querySelectorAll('input[type=checkbox]'), function(el) {
@@ -71,7 +86,20 @@ Consent.prototype.createDialog = function() {
 
     });
 
+    var allSelected = true;
+    Object.keys(this.state).map(function(type, index) {
+        var input = self.dialog.querySelector('input[type="checkbox"][value="' + type + '"]');
+        if (input) {
+            input.checked = self.state[type];
+            if (!self.state[type]) {
+                allSelected = false;
+            }
+        }
+    });
+    this.dialog.querySelector('.data-consent-accept-all').checked = allSelected;
+
     this.dialog.addEventListener('close', function() {
+        console.log(self.dialog.returnValue);
         switch (self.dialog.returnValue) {
         case 'accept':
             Object.keys(self.state).map(function(type, index) {
@@ -85,7 +113,9 @@ Consent.prototype.createDialog = function() {
             // Reopen the modal if it wasn't submitted.
             // This is ugly, but there is no other way to prevent
             // the modal from being closed by pressing the 'Escape' key.
-            self.dialog.showModal();
+            if (!self.state.essential) {
+                self.dialog.showModal();
+            }
             break;
         }
     });

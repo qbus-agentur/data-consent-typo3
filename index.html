@@ -29,6 +29,19 @@
         display: block;
         overflow: auto;
       }
+      dialog.data-consent.banner {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        height: 15em;
+        width: 100%;
+        position: fixed;
+        transform: none;
+        margin: 0;
+        max-width: 100%;
+        min-height: 0;
+      }
 
       dialog.data-consent:not([open]) {
         display: none;
@@ -362,10 +375,10 @@
         </form>
       </dialog>
     </template>
+    <a href="javascript:;" class="open-data-consent-dialog">Privacy Settings</a>
     <script src="bundle.js"></script>
     <script>consent.launch({functional: false})</script>
 
-    <a href="javascript:;" class="open-data-consent-dialog">Privacy Settings</a>
   </body>
 </html>
 

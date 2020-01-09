@@ -1,15 +1,27 @@
 var Consent = require('./index').default;
 
-var consent = new Consent();
+var consent = new Consent({
+    banner: true
+});
 
 consent.isAccepted().then(function(state) {
-        alert(JSON.stringify(state));
+        console.log(JSON.stringify(state));
 });
 consent.isAccepted('essential').then(function(type) {
-	alert('Essential cookies have been enabled');
+	console.log('Essential cookies have been enabled');
 });
 consent.isAccepted('marketing').then(function(state) {
-	alert('marketing is enabled, state: ' . JSON.stringify(state));
+	console.log('marketing is enabled, state: ' . JSON.stringify(state));
 });
 
 window.consent = consent;
+
+Array.prototype.forEach.call(
+    document.querySelectorAll('.open-data-consent-dialog'),
+    function(el) {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            consent.forceOpen();
+        });
+    }
+);
