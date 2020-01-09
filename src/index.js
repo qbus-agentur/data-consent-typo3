@@ -14,7 +14,7 @@ function Consent(options) {
         marketing: [],
     };
     this.state = {
-        essential: false,
+        essential: this.renderBanner ? true : false,
         functional: false,
         statistics: false,
         marketing: false
@@ -71,18 +71,20 @@ Consent.prototype.createDialog = function() {
     var self = this;
     this.dialog = getDialogElement();
 
-    if (this.renderBanner) {
-        this.dialog.setAttribute('class', this.dialog.getAttribute('class') + ' banner');
-    } else {
-        this.dialog.setAttribute('class', dialog.getAttribute('class').replace(' banner', ''));
-    }
+    this.dialog.setAttribute('data-banner', this.renderBanner ? '1' : '0');
 
     this.dialog.querySelector('.data-consent-accept-all').addEventListener('change', function() {
         var checked = this.checked;
-        Array.prototype.forEach.call(self.dialog.querySelectorAll('input[type=checkbox]'), function(el) {
-            el.checked = checked;
-        });
-        self.dialog.querySelector('button[type=submit][value=accept]').setAttribute('data-selected', checked ? 'all' : 'some');
+        Array.prototype.forEach.call(
+            self.dialog.querySelectorAll('input[type=checkbox]'),
+            function(el) {
+                el.checked = checked;
+            }
+        );
+        self.dialog.querySelector('button[type=submit][value=accept]').setAttribute(
+            'data-selected',
+            checked ? 'all' : 'some'
+        );
 
     });
 
