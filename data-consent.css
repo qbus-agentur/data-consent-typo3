@@ -256,3 +256,32 @@ dialog.data-consent .notice-content {
 	left: 10px;
 	right: 0;
 }
+
+
+dialog.data-consent[data-banner='1'] {
+	padding: 2em 2em 0;
+	box-shadow: 0 0px 6px rgba(3,4,5,.75);
+}
+dialog.data-consent[data-banner='1'] form {
+	max-width: 72em;
+	margin: 0 auto;
+}
+dialog.data-consent[data-banner='1'] form:after {
+	height: 2em;
+}
+dialog.data-consent[data-banner='1'] section > svg {
+	display: none;
+}
+dialog.data-consent[data-banner='1'] h2 {
+	text-align: left;
+	margin-top: 0;
+}
+dialog.data-consent[data-banner='1'] .data-consent-options {
+	display: flex;
+	flex-direction: row;
+	padding: 1.5em 0em .5em;
+}
+dialog.data-consent[data-banner='1'] form .data-consent-options label {
+	margin: 0;
+	width: auto;
+}
