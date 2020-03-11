@@ -70,6 +70,10 @@ Consent.prototype.firePromises = function() {
 Consent.prototype.createDialog = function() {
     var self = this;
     this.dialog = getDialogElement();
+    if (this.dialog === null) {
+        console.error('Failed to create the cookie consent dialog, <template> missing?');
+        return;
+    }
 
     this.dialog.setAttribute('data-banner', this.renderBanner ? '1' : '0');
 
@@ -129,6 +133,9 @@ Consent.prototype.createDialog = function() {
 function getDialogElement() {
     var template = document.querySelector('#cookie-modal');
     var dialog;
+    if (template === null) {
+        return null;
+    }
     if (template.content) {
         var fragment = document.importNode(template.content, true);
         dialog = fragment.querySelector('dialog');
