@@ -3,6 +3,7 @@
   "version": "0.1.0-alpha.0",
   "description": "Data consent framework, es6 libraries and css styles",
   "module": "src/index.js",
+  "style": "data-consent.css",
   "scripts": {
     "build": "browserify -p esmify src/main.js -o bundle.js",
     "min": "terser --compress --mangle  -o bundle.min.js bundle.js",
