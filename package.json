@@ -1,14 +1,14 @@
 {
-  "name": "cookieconsent",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@qbus/data-consent",
+  "version": "0.1.0-alpha.0",
+  "description": "Data consent framework, es6 libraries and css styles",
+  "module": "src/index.js",
   "scripts": {
     "build": "browserify -p esmify src/main.js -o bundle.js",
     "min": "terser --compress --mangle  -o bundle.min.js bundle.js",
     "watch": "onchange 'src/*' --wait --verbose -- npm run build"
   },
-  "author": "",
+  "author": "Qbus Internetagentur GmbH",
   "license": "ISC",
   "dependencies": {
     "cookie-universal": "^2.1.0",
