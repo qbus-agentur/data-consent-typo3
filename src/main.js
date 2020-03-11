@@ -1,7 +1,8 @@
 var Consent = require('./index').default;
 
 var consent = new Consent({
-    banner: true
+    banner: false,
+    functional: false
 });
 
 consent.isAccepted().then(function(state) {
@@ -14,6 +15,7 @@ consent.isAccepted('marketing').then(function(state) {
     console.log('marketing is enabled, state: ' . JSON.stringify(state));
 });
 
+consent.launch();
 window.consent = consent;
 
 Array.prototype.forEach.call(
