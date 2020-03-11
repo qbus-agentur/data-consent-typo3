@@ -6,7 +6,7 @@
 $ npm install --save @qbus/data-consent
 ```
 
-## CSS Usage
+## Bundling CSS and JavaScript
 
 ### Usage with LESS
 
@@ -23,13 +23,6 @@ $ npm install --save-dev less-plugin-npm-import
 $ lessc --npm-import style.less stlye.css
 ```
 
-
-### Serve as separate CSS file
-
-Serve the file `data-content.css` from your server or include https://unpkg.com/@qbus/data-consent@0.1.0-alpha.0/data-consent.css as stylesheet.
-
-
-## JavaScript Usage
 
 ### Usage with browserify
 
@@ -50,6 +43,7 @@ var consent = new Consent({
     banner: true,
     functional: false
 });
+consent.launch();
 ```
 
 Adapt your browserify pipeline to include the `esmify` plugin.
@@ -65,6 +59,25 @@ $ browserify -p esmify index.js -o bundle.js
 
 TODO
 
-### Pre-bundled usage
+## Pre-bundled JavaScript and CSS usage (hosted or CDN)
 
-TODO: Create bundle that can be served as raw js/css file from unkg.com or local server.
+Serve the file `data-content.css` and `data-content.js` from your server or include them from
+[UNPKG](https://unpkg.com/@qbus/data-consent/).
+You should include a `Promise` polyfill if you need support for Internet Explorer 11:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@qbus/data-consent@0.1.0-alpha.1/data-consent.css">
+
+<script src="https://unpkg.com/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+<script src="https://unpkg.com/@qbus/data-consent@0.1.0-alpha.1/data-consent.min.js"></script>
+```
+
+`DataConsent` is provided as global class by `data-consent` and can be instantiated with `new`:
+
+```js
+var consent = new DataConsent({
+    banner: true,
+    functional: false
+});
+consent.launch();
+```
