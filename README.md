@@ -43,6 +43,9 @@ var consent = new Consent({
     banner: true,
     functional: false
 });
+consent.isAccepted('marketing').then(function(type) {
+        $.getScript('https://www.googletagmanager.com/gtag/js?id=' + window.gatid);
+});
 consent.launch();
 ```
 
@@ -78,6 +81,9 @@ You should include a `Promise` polyfill if you need support for Internet Explore
 var consent = new DataConsent({
     banner: true,
     functional: false
+});
+consent.isAccepted('marketing').then(function(type) {
+        $.getScript('https://www.googletagmanager.com/gtag/js?id=' + window.gatid);
 });
 consent.launch();
 ```
