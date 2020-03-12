@@ -15,7 +15,6 @@
   "author": "Qbus Internetagentur GmbH",
   "license": "ISC",
   "dependencies": {
-    "cookie-universal": "^2.1.0",
     "dialog-polyfill": "^0.5.0",
     "es6-promise": "^4.2.8"
   },
