@@ -12,7 +12,7 @@ consent.isAccepted('essential').then(function(type) {
     console.log('Essential cookies have been enabled');
 });
 consent.isAccepted('marketing').then(function(state) {
-    console.log('marketing is enabled, state: ' . JSON.stringify(state));
+    console.log('Marketing is enabled');
 });
 
 consent.launch();

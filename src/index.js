@@ -1,4 +1,3 @@
-//import Cookie from 'cookie-universal'
 import dialogPolyfill from 'dialog-polyfill'
 import Promise from 'es6-promise'
 import Storage from './storage'
@@ -71,7 +70,7 @@ Consent.prototype.createDialog = function() {
     var self = this;
     this.dialog = getDialogElement();
     if (this.dialog === null) {
-        console.error('Failed to create the cookie consent dialog, <template> missing?');
+        console.error('Failed to create the data consent dialog, <template> missing?');
         return;
     }
 
