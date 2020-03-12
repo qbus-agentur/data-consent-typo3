@@ -4,3 +4,4 @@ bundle.*
 index.html
 Makefile
 src/main.js
+rollup.config.js
