@@ -13,10 +13,10 @@ function Consent(options) {
         marketing: [],
     };
     this.state = {
-        essential: this.renderBanner ? true : false,
-        functional: false,
-        statistics: false,
-        marketing: false
+        essential: this.renderBanner ? true : null,
+        functional: null,
+        statistics: null,
+        marketing: null
     };
     this.dialog = null;
 }
