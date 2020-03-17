@@ -1,0 +1,33 @@
+{
+    "name": "qbus/data-consent",
+    "type": "typo3-cms-extension",
+    "description": "Data consent",
+    "keywords": [
+        "TYPO3",
+        "extension"
+    ],
+    "homepage": "https://www.qbus.de",
+    "support": {
+        "issues": "https://github.com/qbus-agentur/data-consent/issues"
+    },
+    "authors": [
+        {
+            "name": "Benjamin Franzke",
+            "email": "bfr@qbus.de",
+            "role": "Developer",
+            "homepage": "https://www.qbus.de"
+        }
+    ],
+    "license": "GPL-2.0+",
+    "require": {
+        "typo3/cms-core": "^6.2.14|^7.6.0|^8.7|^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Qbus\\DataConsent\\": "Classes"
+        }
+    },
+    "replace": {
+        "typo3-ter/data-consent": "self.version"
+    }
+}

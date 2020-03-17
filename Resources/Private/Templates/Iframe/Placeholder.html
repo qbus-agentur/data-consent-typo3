@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta http-equiv=X-UA-Compatible content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*,*:before,*:after{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100vh}
+body{display:flex;justify-content:center;align-items:center;padding:2em;flex-direction:column;
+font: 1.4em/1.4 Verdana,Arial,Helvetica,sans-serif;
+background: #494949;
+color:rgba(255,255,255,.5);
+}
+p{text-align: center}
+a{color: inherit; text-decoration: underline}
+.buttons{display:flex;margin-top:2em;}
+.button {
+font-size:.95em;
+border:1px solid currentColor;
+margin-right:1em;
+padding:.5em .75em;
+text-decoration:none;
+margin-right:1em;
+}
+.button:hover,.button:focus{color:white}
+@media (max-width: 45em) {
+body{font-size: 1.2em;}
+}
+</style>
+<f:comment><!--
+	Note: We're not using f:switch here, because of f:defaultCase TYPO3 v7 backwards compatibility issues.
+	Feel free to refactor to f:switch when supporting more than two languages.
+--></f:comment>
+<f:if condition="{lang} == 'de'">
+<f:then><f:render section="de" arguments="{_all}"/></f:then>
+<f:else><f:render section="en" arguments="{_all}"/></f:else>
+</f:if>
+<f:section name="de">
+<p>Ein Widget des externen Servers <strong> {host}</strong> wurde nicht geladen, da <strong>{type}</strong> cookies nicht aktiviert sind.</p>
+<br>
+<div class="buttons">
+    <a class="button" href="javascript:parent.openConsent()">Privacy Settings</a>
+    <a class="button" href="{url}">Load {title} now</a>
+</div>
+</f:section>
+<f:section name="en">
+<p>An iframe from the Host <strong> {host}</strong> has not been loaded as <strong>{type}</strong> cookies have not been enabled.
+<!--You may <a href="javascript:parent.openConsent()">change data privacy settings</a> to permanently load this video or make a temporary <a href="{url}">exception</a>.-->
+</p>
+<br>
+<div class="buttons">
+    <a class="button" href="javascript:parent.openConsent()">Privacy Settings</a>
+    <a class="button" href="{url}">Load {title} now</a>
+</div>
+</f:section>
