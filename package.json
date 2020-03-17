@@ -10,6 +10,7 @@
     "rollup": "rollup -c",
     "postrollup": "terser --compress --mangle -o data-consent.min.js data-consent.js",
     "min": "terser --compress --mangle  -o bundle.min.js bundle.js",
+    "cleancss": "cleancss -O2 --format keep-break -o Resources/Public/Css/data-consent.min.css data-consent.css",
     "watch": "onchange 'src/*' --wait --verbose -- npm run build"
   },
   "author": "Qbus Internetagentur GmbH",
@@ -23,6 +24,7 @@
     "@rollup/plugin-node-resolve": "^7.1.1",
     "babel-preset-es2015": "^6.24.1",
     "browserify": "^16.5.0",
+    "clean-css-cli": "^4.3.0",
     "esmify": "^2.1.1",
     "install": "^0.13.0",
     "minimist": "^1.2.5",

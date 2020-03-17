@@ -4,3 +4,14 @@
 /.php_cs export-ignore
 /.editorconfig export-ignore
 /src export-ignore
+
+/data-consent.css export-ignore
+
+/Makefile export-ignore
+/package-lock.json export-ignore
+/package.json export-ignore
+/rollup.config.js export-ignore
+
+# Temporary stuff
+/.htaccess export-ignore
+/index.html export-ignore

@@ -1,0 +1,2 @@
+config.tx_dataconsent_enable_css = 1
+config.tx_dataconsent_enable_js = 1

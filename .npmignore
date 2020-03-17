@@ -7,6 +7,7 @@ src/main.js
 rollup.config.js
 
 .gitattributes
+Configuration
 Resources
 composer.json
 *.php
