@@ -212,7 +212,7 @@ dialog.data-consent h2 {
 }
 
 template {
-	// For IE11
+	/* For IE11 */
 	display: none;
 }
 
