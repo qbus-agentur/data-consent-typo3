@@ -25,9 +25,10 @@ class IframePlaceholderEidController
      */
     public function processRequest(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $url = $request->getQueryParams()['original_url'] ?? null;
-        $lang = $request->getQueryParams()['lang'] ?? null;
-        $templateProviderPackage = $request->getQueryParams()['pkg'] ?? 'data_consent';
+        $queryParams = $request->getQueryParams();
+        $url = isset($queryParams['original_url']) ? $queryParams['original_url'] : null;
+        $lang = isset($queryParams['lang']) ? $queryParams['lang'] : null;
+        $templateProviderPackage = isset($queryParams['pkg']) ? $queryParams['pkg'] : 'data_consent';
 
         $escapedUrl = htmlspecialchars($url);
         $parsed  = parse_url($url);
