@@ -8,4 +8,4 @@ build:
 
 publish:
 	npm run rollup
-	npm publish --tag alpha --access public
+	npm publish --access public

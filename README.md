@@ -74,10 +74,10 @@ Serve the file `data-content.css` and `data-content.js` from your server or incl
 You should include a `Promise` polyfill if you need support for Internet Explorer 11:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@qbus/data-consent@0.1.0-alpha.3/data-consent.css">
+<link rel="stylesheet" href="https://unpkg.com/@qbus/data-consent@0.1.0/data-consent.css">
 
 <script src="https://unpkg.com/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-<script src="https://unpkg.com/@qbus/data-consent@0.1.0-alpha.3/data-consent.min.js"></script>
+<script src="https://unpkg.com/@qbus/data-consent@0.1.0/data-consent.min.js"></script>
 ```
 
 `DataConsent` is provided as global class by `data-consent` and can be instantiated with `new`:
