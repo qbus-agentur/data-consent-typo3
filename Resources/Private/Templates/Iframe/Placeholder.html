@@ -18,7 +18,6 @@ a{color: inherit; text-decoration: underline}
 .button {
 font-size:.95em;
 border:1px solid currentColor;
-margin-right:1em;
 padding:.5em .75em;
 text-decoration:none;
 margin-right:1em;
@@ -26,6 +25,14 @@ margin-right:1em;
 .button:hover,.button:focus{color:white}
 @media (max-width: 45em) {
 body{font-size: 1.2em;}
+}
+@media (max-width: 30em) {
+body{font-size: .9em;}
+.buttons {flex-wrap:wrap;}
+.buttons > * {margin: 0 0 .3em; flex: 1 0 100%; text-align: center}
+}
+@media (max-width: 15em) {
+body{font-size: .75em;}
 }
 </style>
 <f:comment><!--
@@ -38,7 +45,6 @@ body{font-size: 1.2em;}
 </f:if>
 <f:section name="de">
 <p>Ein Widget des externen Servers <strong> {host}</strong> wurde nicht geladen, da <strong>{type}</strong> cookies nicht aktiviert sind.</p>
-<br>
 <div class="buttons">
     <a class="button" href="javascript:parent.openConsent()">Privacy Settings</a>
     <a class="button" href="{url}">Load {title} now</a>
@@ -48,7 +54,6 @@ body{font-size: 1.2em;}
 <p>An iframe from the Host <strong> {host}</strong> has not been loaded as <strong>{type}</strong> cookies have not been enabled.
 <!--You may <a href="javascript:parent.openConsent()">change data privacy settings</a> to permanently load this video or make a temporary <a href="{url}">exception</a>.-->
 </p>
-<br>
 <div class="buttons">
     <a class="button" href="javascript:parent.openConsent()">Privacy Settings</a>
     <a class="button" href="{url}">Load {title} now</a>
