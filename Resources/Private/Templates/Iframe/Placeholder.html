@@ -44,18 +44,18 @@ body{font-size: .75em;}
 <f:else><f:render section="en" arguments="{_all}"/></f:else>
 </f:if>
 <f:section name="de">
-<p>Ein Widget des externen Servers <strong> {host}</strong> wurde nicht geladen, da <strong>{type}</strong> cookies nicht aktiviert sind.</p>
+<p>Inhalte des externen Servers <strong> {host}</strong> wurden nicht geladen, da <strong>{type}</strong> cookies nicht aktiviert sind.</p>
 <div class="buttons">
     <a class="button" href="javascript:parent.openConsent()">Privacy Settings</a>
     <a class="button" href="{url}">Load {title} now</a>
 </div>
 </f:section>
 <f:section name="en">
-<p>An iframe from the Host <strong> {host}</strong> has not been loaded as <strong>{type}</strong> cookies have not been enabled.
+<p>Contents from Host <strong> {host}</strong> have not been loaded as <strong>{type}</strong> cookies have not been enabled.
 <!--You may <a href="javascript:parent.openConsent()">change data privacy settings</a> to permanently load this video or make a temporary <a href="{url}">exception</a>.-->
 </p>
 <div class="buttons">
     <a class="button" href="javascript:parent.openConsent()">Privacy Settings</a>
-    <a class="button" href="{url}">Load {title} now</a>
+    <a class="button" href="{url}">Load {title} Now</a>
 </div>
 </f:section>
