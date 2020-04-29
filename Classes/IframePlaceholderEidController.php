@@ -35,7 +35,7 @@ class IframePlaceholderEidController
         $escapedHost = htmlspecialchars($parsed['host']);
         $type = 'marketing';
 
-        $title = 'Contents';
+        $title = 'Content';
         if ($escapedHost === 'www.youtube.com') {
             $title = 'Video';
         }
