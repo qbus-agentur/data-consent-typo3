@@ -1,6 +1,6 @@
 {
   "name": "@qbus/data-consent",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Data consent framework, es6 libraries and css styles",
   "main": "data-consent.js",
   "module": "src/index.js",
