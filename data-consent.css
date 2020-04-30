@@ -177,7 +177,7 @@ dialog.data-consent menu button {
 	margin-right: 5px;
 	flex: 0 1 50%;
 	padding: .75em 1.25em;
-	background: white;
+	background: transparent;
 	border: 1px solid currentColor;
 	color: currentColor;
 	border-radius: 2px;
