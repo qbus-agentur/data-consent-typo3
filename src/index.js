@@ -6,6 +6,7 @@ function Consent(options) {
     this.renderBanner = options.banner || false;
     this.storage = new Storage('localstorage');
     this.listeners = [];
+    this.fired = false;
     this.specificListeners = {
         essential: [],
         functional: [],
@@ -23,6 +24,21 @@ function Consent(options) {
 
 Consent.prototype.isAccepted = function(type) {
     var self = this;
+
+    if (this.fired) {
+        if (type && this.state[type]) {
+            return new Promise(function(resolve, reject) {
+                resolve(type);
+            });
+        }
+
+        if (!type) {
+            return new Promise(function(resolve, reject) {
+                resolve(self.state);
+            });
+        }
+    }
+
     if (type) {
         return new Promise(function(resolve, reject) {
             self.specificListeners[type].push(resolve);
@@ -64,6 +80,7 @@ Consent.prototype.firePromises = function() {
             });
         }
     });
+    this.fired = true;
 }
 
 Consent.prototype.createDialog = function() {
