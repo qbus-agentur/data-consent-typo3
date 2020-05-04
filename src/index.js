@@ -7,6 +7,7 @@ function Consent(options) {
     this.storage = new Storage('localstorage');
     this.listeners = [];
     this.fired = false;
+    this.initialize = options.initialize || null;
     this.specificListeners = {
         essential: [],
         functional: [],
@@ -143,6 +144,9 @@ Consent.prototype.createDialog = function() {
     });
 
     document.body.appendChild(this.dialog);
+    if (this.initialize) {
+        this.initialize(this.dialog);
+    }
     this.dialog.showModal();
 }
 
