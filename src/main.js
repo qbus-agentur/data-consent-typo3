@@ -27,3 +27,15 @@ Array.prototype.forEach.call(
         });
     }
 );
+
+
+locationHashChanged = function() {
+    var url = window.location.hash.substr(1)
+    if (url) {
+        document.querySelector('iframe.demo-iframe').setAttribute('src', url);
+    } else {
+        document.querySelector('iframe.demo-iframe').removeAttribute('src');
+    }
+}
+window.addEventListener("hashchange", locationHashChanged);
+locationHashChanged();
