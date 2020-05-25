@@ -45,7 +45,7 @@ Add the following contents to your index.js file:
 var Consent = require('@qbus/data-consent').default;
 
 var consent = new Consent({
-    banner: true,
+    banner: false,
     functional: false
 });
 consent.isAccepted('marketing').then(function(type) {
@@ -84,7 +84,7 @@ You should include a `Promise` polyfill if you need support for Internet Explore
 
 ```js
 var consent = new DataConsent({
-    banner: true,
+    banner: false,
     functional: false
 });
 consent.isAccepted('marketing').then(function(type) {
