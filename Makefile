@@ -5,6 +5,7 @@ build:
 	npm run rollup
 	cp data-consent.min.js node_modules/es6-promise/dist/es6-promise.auto.min.js Resources/Public/JavaScript/
 	npm run cleancss
+	date +%s | tr -d '\n' > buildtime
 
 publish:
 	npm run rollup
