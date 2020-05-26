@@ -2,58 +2,95 @@
   <dialog class="data-consent fixed">
     <form method="dialog">
       <section>
-        <svg viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24" class="center">
           <path fill="currentColor" d="M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A9,9 0 0,0 21,12C21,11.5 20.96,11 20.87,10.5C20.6,10 20,10 20,10H18V9C18,8 17,8 17,8H15V7C15,6 14,6 14,6H13V4C13,3 12,3 12,3M9.5,6A1.5,1.5 0 0,1 11,7.5A1.5,1.5 0 0,1 9.5,9A1.5,1.5 0 0,1 8,7.5A1.5,1.5 0 0,1 9.5,6M6.5,10A1.5,1.5 0 0,1 8,11.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 5,11.5A1.5,1.5 0 0,1 6.5,10M11.5,11A1.5,1.5 0 0,1 13,12.5A1.5,1.5 0 0,1 11.5,14A1.5,1.5 0 0,1 10,12.5A1.5,1.5 0 0,1 11.5,11M16.5,13A1.5,1.5 0 0,1 18,14.5A1.5,1.5 0 0,1 16.5,16H16.5A1.5,1.5 0 0,1 15,14.5H15A1.5,1.5 0 0,1 16.5,13M11,16A1.5,1.5 0 0,1 12.5,17.5A1.5,1.5 0 0,1 11,19A1.5,1.5 0 0,1 9.5,17.5A1.5,1.5 0 0,1 11,16Z"></path>
         </svg>
-        <h2>Daten&shy;verarbeitungs&shy;einstellungen</h2>
+        <h2>Datenverarbeitung und Privatsphäre</h2>
         <p>
           Diese Website benutzt Cookies, die für das Funktionieren der Website erforderlich sind.<span class="has-marketing" data-consent-marketing="true"> Zur Darstellung einiger interessenbezogener Inhalte setzen wir Cookies ein, die als Marketing-Cookies qualifiziert sind. Ohne Ihre Zustimmung können diese Inhalte nicht ausgespielt werden.</span><span class="has-statistik" data-consent-statistik="true"> Um unser Internetangebot fortlaufend verbessern zu können, bitten wir Sie, uns die Erfassung von anonymisierten Nutzungsdaten zu ermöglichen.</span> Sie können einzeln auswählen, welche Cookies Sie zulassen wollen oder allen Cookies zustimmen. Weitere Informationen erhalten Sie in unserer <a href="/datenschutz" data-privacy-policy-link="true">Datenschutzerklärung</a>.
         <div class="data-consent-options">
-          <label>
-            Erforderliche Cookies
-            <span class="notice">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-              <span class="notice-content">
-                Cookies dieser Kategorie sind für die Grundfunktionen der Website erforderlich. Sie dienen der sicheren und bestimmungsgemäßen Nutzung und sind daher nicht deaktivierbar.
-              </span>
-            </span>
-            <input type="checkbox" value="essential" required="">
-          </label>
 
-          <label>
-            Funktionelle Cookies
-            <span class="notice">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+          <input type="radio" class="data-consent-accordion-state" name="data-consent-consent-option-details" id="data-consent-options-show-none" checked>
+
+          <input type="radio" class="data-consent-accordion-state" name="data-consent-consent-option-details" id="data-consent-options-show-details-essential">
+          <div class="data-consent-option">
+            <label>
+              Erforderliche Cookies
+              <input type="checkbox" value="essential" checked>
+            </label>
+            <label class="fallback" for="data-consent-options-show-none"></label>
+            <label class="notice" for="data-consent-options-show-details-essential">
+              Details <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0 h24v24H0V0z" fill="none"/><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
               <span class="notice-content">
-                Cookies dieser Kategorie ermöglichen uns die Bereitstellung nützlicher Funktionen bei. Das Deaktivieren dieser Cookies kann zu einem langsameren Seitenaufbau führen, optionale Einstellungen wie Schriftgröße oder Sprache werden nicht gespeichert.
               </span>
-            </span>
-            <input type="checkbox" value="functional">
-          </label>
-          <label>
-            Statistik Cookies
-            <span class="notice">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+            </label>
+          </div>
+
+          <input type="radio" class="data-consent-accordion-state" name="data-consent-consent-option-details" id="data-consent-options-show-details-functional">
+          <div class="data-consent-option">
+            <label>
+              Funktionelle Cookies
+              <input type="checkbox" value="functional">
+            </label>
+            <label class="fallback" for="data-consent-options-show-none"></label>
+            <label class="notice" for="data-consent-options-show-details-functional">
+              Details <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0 h24v24H0V0z" fill="none"/><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
               <span class="notice-content">
-                Cookies dieser Kategorie ermöglichen es uns, die Nutzung der Website zu analysieren um so Schlussfolgerungen für deren fortlaufende Verbesserung abzuleiten.
               </span>
-            </span>
-            <input type="checkbox" value="statistics">
-          </label>
-          <label>
-            Marketing Cookies
-            <span class="notice">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+            </label>
+          </div>
+
+          <input type="radio" class="data-consent-accordion-state" name="data-consent-consent-option-details" id="data-consent-options-show-details-statistics">
+          <div class="data-consent-option">
+            <label>
+              Statistik Cookies
+              <input type="checkbox" value="statistics">
+            </label>
+            <label class="fallback" for="data-consent-options-show-none"></label>
+            <label class="notice" for="data-consent-options-show-details-statistics">
+              Details <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0 h24v24H0V0z" fill="none"/><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
               <span class="notice-content">
-                Marketing-Cookies ermöglichen die Darstellung interessenbezogener Inhalte, die meist durch Drittanbieter bereitgestellt werden, wie z. B. Videos oder Karten. Die Partner können ihren Sitz auch in Nicht-EU-Ländern haben. Diese Partner führen die Informationen unter Umständen mit weiteren Daten zusammen. Auf diese Datennutzung haben wir keinen Einfluss. Durch Deaktivieren der Marketing-Cookies können die betroffenen Inhalte nicht dargestellt werden. Sie haben jedoch die Möglichkeit, nachträglich bei jedem einzelnen dieser Inhalte ggf. ihre Zustimmung zu erteilen
               </span>
-            </span>
-            <input type="checkbox" value="marketing">
-          </label>
+            </label>
+          </div>
+
+          <input type="radio" class="data-consent-accordion-state" name="data-consent-consent-option-details" id="data-consent-options-show-details-marketing">
+          <div class="data-consent-option">
+            <label>
+              Marketing Cookies
+              <input type="checkbox" value="marketing">
+            </label>
+            <label class="fallback" for="data-consent-options-show-none"></label>
+            <label class="notice" for="data-consent-options-show-details-marketing">
+              Details <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0 h24v24H0V0z" fill="none"/><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </label>
+          </div>
+
+
+          <div class="notice-content notice-content-essential">
+            <strong>Erforderliche Cookies</strong> sind für die Grundfunktionen der Website erforderlich. Sie dienen der sicheren und bestimmungsgemäßen Nutzung und sind daher nicht deaktivierbar.
+          </div>
+          <div class="notice-content notice-content-functional">
+            <strong>Funktionelle Cookies</strong> ermöglichen uns die Bereitstellung nützlicher Funktionen bei. Das Deaktivieren dieser Cookies kann zu einem langsameren Seitenaufbau führen, optionale Einstellungen wie Schriftgröße oder Sprache werden nicht gespeichert.
+          </div>
+          <div class="notice-content notice-content-statistics">
+            <strong>Statistik Cookies</strong> ermöglichen es uns, die Nutzung der Website zu analysieren um so Schlussfolgerungen für deren fortlaufende Verbesserung abzuleiten.
+          </div>
+          <div class="notice-content notice-content-marketing">
+            <strong>Marketing-Cookies</strong> ermöglichen die Darstellung interessenbezogener Inhalte, die meist durch Drittanbieter bereitgestellt werden, wie z. B. Videos oder Karten. Die Partner können ihren Sitz auch in Nicht-EU-Ländern haben. Diese Partner führen die Informationen unter Umständen mit weiteren Daten zusammen. Auf diese Datennutzung haben wir keinen Einfluss. Durch Deaktivieren der Marketing-Cookies können die betroffenen Inhalte nicht dargestellt werden. Sie haben jedoch die Möglichkeit, nachträglich bei jedem einzelnen dieser Inhalte ggf. ihre Zustimmung zu erteilen
+          </div>
         </div>
+
         <menu>
           <!--<button type="submit" value="decline">Ablehnen</button>-->
-          <div class="data-consent-button-group"><span class="checkbox-button-addon"><input type="checkbox" class="data-consent-accept-all"></span><button type="submit" value="accept">Einstellungen akzeptieren</button></div>
+          <div class="data-consent-button-group">
+            <button type="submit" value="accept">Eigene Auswahl bestätigen</button>
+          </div>
+          <span class="data-consent-button-or">&nbsp;oder&nbsp;</span>
+          <div class="data-consent-button-group">
+            <button type="submit" value="accept-all">Alle Cookie bestätigen</button>
+          </div>
+          </div>
         </menu>
       </section>
     </form>

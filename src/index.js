@@ -4,6 +4,7 @@ import Storage from './storage'
 
 function Consent(options) {
     this.renderBanner = options.banner || false;
+    this.essentialByDefault = options.essentialByDefault || true;
     this.storage = new Storage('localstorage');
     this.listeners = [];
     this.fired = false;
@@ -15,7 +16,7 @@ function Consent(options) {
         marketing: [],
     };
     this.state = {
-        essential: this.renderBanner ? true : null,
+        essential: this.essentialByDefault,
         functional: null,
         statistics: null,
         marketing: null
@@ -94,7 +95,8 @@ Consent.prototype.createDialog = function() {
 
     this.dialog.setAttribute('data-banner', this.renderBanner ? '1' : '0');
 
-    this.dialog.querySelector('.data-consent-accept-all').addEventListener('change', function() {
+    var acceptAllCheckbox = this.dialog.querySelector('.data-consent-accept-all');
+    acceptAllCheckbox && acceptAllCheckbox.addEventListener('change', function() {
         var checked = this.checked;
         Array.prototype.forEach.call(
             self.dialog.querySelectorAll('input[type=checkbox]'),
@@ -119,7 +121,7 @@ Consent.prototype.createDialog = function() {
             }
         }
     });
-    this.dialog.querySelector('.data-consent-accept-all').checked = allSelected;
+    acceptAllCheckbox && (acceptAllCheckbox.checked = allSelected);
 
     this.dialog.addEventListener('close', function() {
         console.log(self.dialog.returnValue);
@@ -127,6 +129,17 @@ Consent.prototype.createDialog = function() {
         case 'accept':
             Object.keys(self.state).map(function(type, index) {
                 var input = self.dialog.querySelector('input[type="checkbox"][value="' + type + '"]');
+                self.state[type] = (input && input.checked);
+            });
+            self.storage.set('data-consent', self.state);
+            self.firePromises();
+            break;
+        case 'accept-all':
+            Object.keys(self.state).map(function(type, index) {
+                var input = self.dialog.querySelector('input[type="checkbox"][value="' + type + '"]');
+                if (input) {
+                    input.checked = true;
+                }
                 self.state[type] = (input && input.checked);
             });
             self.storage.set('data-consent', self.state);

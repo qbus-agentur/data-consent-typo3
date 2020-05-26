@@ -73,7 +73,7 @@ dialog.data-consent {
 	border: none;
 	box-sizing: border-box;
 	border-radius: 2px;
-	width: 48em;
+	width: 68.5em;
 	min-height: 30em;
 	max-width: 80vw;
 	max-height: 80vh;
@@ -95,9 +95,16 @@ dialog.data-consent:not([open]) {
 dialog.data-consent section > svg {
 	width: 4em;
 	height: 4em;
-	text-align: center;
 	display: block;
-	margin:  auto;
+	margin: 0;
+}
+dialog.data-consent section > svg.center {
+	text-align: center;
+	margin: 0 auto;
+}
+dialog.data-consent section > svg.right {
+	text-align: right;
+	margin-left: auto;
 }
 dialog.data-consent form {
 	display: flex;
@@ -107,7 +114,7 @@ dialog.data-consent form {
 dialog.data-consent::backdrop,
 /* .backdrop class is for dialog-polyfill */
 dialog.data-consent + .backdrop {
-	background: rgba(30,40,50,.85);
+	background: rgba(0,0,0,.78);
 }
 dialog.data-consent[data-banner='1']::backdrop,
 /* .backdrop class is for dialog-polyfill */
@@ -145,6 +152,7 @@ dialog.data-consent menu {
 	margin-bottom: 0;
 	padding: 0;
 	color: #259D15;
+	color: var(--primary-color, #259D15);
 }
 dialog.data-consent menu > * + * {
 	margin-top: 0;
@@ -181,7 +189,6 @@ dialog.data-consent menu button {
 	border: 1px solid currentColor;
 	color: currentColor;
 	border-radius: 2px;
-	font-size: 1.2em;
 	cursor: pointer;
 	position: relative;
 	margin-top: 0;
@@ -207,8 +214,9 @@ dialog.data-consent menu button[data-selected='all'] {
 dialog.data-consent menu button:last-child {
 }
 dialog.data-consent h2 {
-	font-size: 2.125em;
-	text-align: center;
+	font-size: 1.7857em;
+}
+dialog.data-consent p {
 }
 
 template {
@@ -218,45 +226,81 @@ template {
 
 dialog.data-consent .notice {
 	font-weight: normal;
+	padding-left: 4em;
+	margin-top: 0;
+	cursor: pointer;
 }
 dialog.data-consent .notice svg {
 	height: 1.25em;
 	width: 1.25em;
 	position: relative;
 	top: 4px;
+	transition: transform .35s ease;
+}
+dialog.data-consent .data-consent-accordion-state:checked + .data-consent-option .notice svg {
+	transform: rotate(180deg);
+}
+dialog.data-consent .data-consent-accordion-state {
+	position: absolute;
+	opacity: 0;
+	z-index: -1;
+}
+dialog.data-consent .data-consent-option {
+	position: relative;
+}
+dialog.data-consent .data-consent-option label:first-child {
+	position: relative;
+	z-index: 2;
 	cursor: pointer;
 }
-/*
-dialog.data-consent .notice:before {
-	content: 'i';
-	display: inline-block;
-	border-radius: 50%;
-	border: 1px solid currentColor;
-	height: 18px;
-	width: 18px;
-	line-height: 18px;
-	text-align: center;
-	color: #000;
-}
- */
-dialog.data-consent .notice .notice-content {
+dialog.data-consent .data-consent-option .fallback {
 	display: none;
 }
-dialog.data-consent .notice:hover .notice-content {
-	display: block;
-}
-dialog.data-consent .notice-content {
-	position:absolute;
-	background: white;
-	font-size: 0.8em;
-	box-shadow: 0 1px 3px rgba(30,40,50,.75);
-	padding: 1em;
-	margin: 0 !important;
-	transform: translateY(calc(-100% - 23px));
-	left: 10px;
+
+dialog.data-consent .data-consent-accordion-state:checked + .data-consent-option .fallback {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
 	right: 0;
+	bottom: 0;
+	display: block;
+	cursor: pointer;
 }
 
+dialog.data-consent .notice-content {
+	display: none;
+}
+
+dialog.data-consent #data-consent-options-show-details-essential:checked ~ .notice-content-essential,
+dialog.data-consent #data-consent-options-show-details-functional:checked ~ .notice-content-functional,
+dialog.data-consent #data-consent-options-show-details-statistics:checked ~ .notice-content-statistics,
+dialog.data-consent #data-consent-options-show-details-marketing:checked ~ .notice-content-marketing {
+	display: block;
+}
+
+dialog.data-consent .notice-content {
+	font-size: 0.8em;
+	background-color: #EDEDED;
+	background-color: var(--box-backround, #EDEDED);
+	padding: 1em;
+	margin-top: 1.25em !important;
+	width: 100%;
+}
+
+dialog.data-consent form .data-consent-options {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 1.5em 0em .5em;
+}
+dialog.data-consent form .data-consent-options > * + * {
+	margin-top: 0;
+}
+dialog.data-consent .data-consent-options label {
+	margin: 0;
+	width: auto;
+}
 
 dialog.data-consent[data-banner='1'] {
 	padding: 2em 2em 0;
@@ -272,16 +316,8 @@ dialog.data-consent[data-banner='1'] form:after {
 dialog.data-consent[data-banner='1'] section > svg {
 	display: none;
 }
+
 dialog.data-consent[data-banner='1'] h2 {
 	text-align: left;
 	margin-top: 0;
-}
-dialog.data-consent[data-banner='1'] .data-consent-options {
-	display: flex;
-	flex-direction: row;
-	padding: 1.5em 0em .5em;
-}
-dialog.data-consent[data-banner='1'] form .data-consent-options label {
-	margin: 0;
-	width: auto;
 }

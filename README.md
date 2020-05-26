@@ -19,6 +19,9 @@ Add the following contents to your style.less file:
 
 ```less
 @import (inline) "npm://@qbus/data-consent";
+dialog.data-consent {
+    --primary-color: #64c5e2;
+}
 ```
 
 Adapt your less-css pipeline to include the `npm-import` plugin.
