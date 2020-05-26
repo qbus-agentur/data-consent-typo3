@@ -32,6 +32,9 @@ Array.prototype.forEach.call(
 locationHashChanged = function() {
     var url = window.location.hash.substr(1)
     if (url) {
+        if (!/^https?:\/\//i.test(url)) {
+            url = 'https://' + url;
+        }
         document.querySelector('iframe.demo-iframe').setAttribute('src', url);
     } else {
         document.querySelector('iframe.demo-iframe').removeAttribute('src');
