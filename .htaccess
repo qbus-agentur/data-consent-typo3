@@ -1,3 +1,6 @@
+Options +Includes
+AddOutputFilter INCLUDES .html
+
 <FilesMatch "\.(html)$">
 <IfModule mod_headers.c>
 	Header set Cache-Control "no-cache, no-store, must-revalidate"
