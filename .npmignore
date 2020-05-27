@@ -1,4 +1,5 @@
 bundle.*
+buildtime
 .editorconfig
 .htaccess
 index.html
