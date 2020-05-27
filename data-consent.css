@@ -195,6 +195,7 @@ dialog.data-consent .notice {
 	margin-top: 0;
 	cursor: pointer;
 	font-size: 0.875em;
+	font-weight: normal;
 }
 dialog.data-consent .notice svg {
 	height: 1.25em;
