@@ -21,6 +21,8 @@ Add the following contents to your style.less file:
 @import (inline) "npm://@qbus/data-consent";
 dialog.data-consent {
     --primary-color: #64c5e2;
+    --btn-border-radius: 2em;
+    --box-background: #ededed;
 }
 ```
 

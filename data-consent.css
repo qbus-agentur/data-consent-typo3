@@ -93,7 +93,7 @@ dialog.data-consent:not([open]) {
 	display: none;
 }
 dialog.data-consent section > svg {
-	width: 4em;
+	width: auto;
 	height: 4em;
 	display: block;
 	margin: 0;
@@ -122,9 +122,6 @@ dialog.data-consent[data-banner='1'] + .backdrop,
 dialog.data-consent[data-banner='1'] + .backdrop + ._dialog_overlay {
 	display: none;
 }
-dialog.data-consent form .data-consent-options {
-	padding: 1.5em 3em .5em;
-}
 dialog.data-consent form .data-consent-options label {
 	margin: 0 auto;
 }
@@ -134,51 +131,35 @@ dialog.data-consent form .data-consent-options input {
 dialog.data-consent menu {
 	display: flex;
 	justify-content: center;
-	margin-left: -5px;
-	margin-right: -5px;
-	margin-bottom: 0;
+	margin: 2.75em -5px 0 -5px;
 	padding: 0;
-	color: #259D15;
-	color: var(--primary-color, #259D15);
 }
 dialog.data-consent menu > * + * {
 	margin-top: 0;
 }
-dialog.data-consent form .data-consent-button-group {
-	border: 1px solid currentColor;
-	display: flex;
-	border-radius: 5px;
-}
-dialog.data-consent form .data-consent-button-group > * + *{
-	margin-top: 0;
-}
-dialog.data-consent form .data-consent-button-group > span {
-	border-right: 1px solid currentColor;
+dialog.data-consent form menu > span {
 	display: flex;
 	align-items: center;
-	width: 3em;
-	flex: 0 0 3em;
+	width: 5em;
+	flex: 0 0 5em;
 	justify-content: center;
-}
-dialog.data-consent form .data-consent-button-group > button {
-	flex: 1 0 auto;
-	margin: 0;
-	border: 0;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
+	font-weight: bold;
 }
 dialog.data-consent menu button {
+	font-weight: bold;
+	font-size: 1em;
 	margin-left: 5px;
 	margin-right: 5px;
-	flex: 0 1 50%;
-	padding: .75em 1.25em;
+	flex: 0 1 20em;
+	width: 18em;
+	padding: .65em 1.1em;
 	background: transparent;
-	border: 1px solid currentColor;
-	color: currentColor;
-	border-radius: 2px;
+	color: var(--primary-color, #259D15);
+	color: inherit;
+	border: 1px solid rgba(0,0,0,.3);
+	border-radius: var(--btn-border-radius, 0px);
 	cursor: pointer;
 	position: relative;
-	margin-top: 0;
 }
 dialog.data-consent menu button:hover:before,
 dialog.data-consent menu button:focus:before {
@@ -191,11 +172,10 @@ dialog.data-consent menu button:focus:before {
 	bottom: 0;
 	background: rgba(0,0,0,.1);
 }
-dialog.data-consent menu button + button {
-	margin-top: 0;
-}
-dialog.data-consent menu button[data-selected='all'] {
-	background: #259D15;
+dialog.data-consent menu button[value='accept-all'] {
+	background-color: #259D15;
+	background-color: var(--primary-color, #259D15);
+	border-color: transparent;
 	color: white;
 }
 dialog.data-consent menu button:last-child {
@@ -233,11 +213,9 @@ dialog.data-consent .data-consent-accordion-state {
 }
 dialog.data-consent .data-consent-option {
 	position: relative;
-	padding-left: 4em;
-}
-dialog.data-consent .data-consent-option input + label {
-	user-select: none;
-	display: block;
+	padding-left: 2em;
+	padding-right: 1em;
+	flex: 1 0 25%;
 }
 dialog.data-consent .data-consent-option input {
 	position: absolute;
@@ -246,12 +224,15 @@ dialog.data-consent .data-consent-option input {
 }
 dialog.data-consent .data-consent-option input + label {
 	position: relative;
+	user-select: none;
+	display: block;
 	font-weight: bold;
 	z-index: 2;
 	cursor: pointer;
 	line-height: 1;
 	padding-top: .2em;
 	padding-bottom: .2em;
+	white-space: nowrap;
 }
 dialog.data-consent .data-consent-option input + label:before {
 	content: '';
@@ -259,6 +240,7 @@ dialog.data-consent .data-consent-option input + label:before {
 	position: absolute;
 	left: -2em;
 	top: auto;
+	transform: translateY(-1px);
 	color: #259D15;
 	color: var(--primary-color, #259D15);
 	border: 1px solid currentColor;
@@ -312,16 +294,18 @@ dialog.data-consent .notice-content {
 	padding: 1em;
 	margin-top: 1.25em !important;
 	width: 100%;
+	order: 1;
 }
 
 dialog.data-consent form .data-consent-options {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	padding: 1.5em 0em .5em;
+	padding-left: 2em;
+	padding-right: 2em;
 }
 dialog.data-consent form .data-consent-options > * + * {
-	margin-top: 0;
+	margin-top: 1.25em;
 }
 dialog.data-consent .data-consent-options label {
 	margin: 0;
@@ -346,4 +330,27 @@ dialog.data-consent[data-banner='1'] section > svg {
 dialog.data-consent[data-banner='1'] h2 {
 	text-align: left;
 	margin-top: 0;
+}
+
+@media (max-width: 56em) {
+	dialog.data-consent form .data-consent-options {
+		padding: 0;
+	}
+	dialog.data-consent .data-consent-option {
+		width: 100%;
+		flex: 1 0 auto;
+	}
+	dialog.data-consent .notice-content {
+		order: 0;
+	}
+	dialog.data-consent menu {
+		flex-wrap: wrap;
+	}
+	dialog.data-consent menu > span {
+		width: 100% !important;
+		flex: 1 0 auto !important;
+	}
+	dialog.data-consent menu > * + * {
+		margin-top: .75em;
+	}
 }
