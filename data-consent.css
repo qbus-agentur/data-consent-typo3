@@ -114,7 +114,7 @@ dialog.data-consent form {
 dialog.data-consent::backdrop,
 /* .backdrop class is for dialog-polyfill */
 dialog.data-consent + .backdrop {
-	background: rgba(0,0,0,.78);
+	background: rgba(0,0,0,.7);
 }
 dialog.data-consent[data-banner='1']::backdrop,
 /* .backdrop class is for dialog-polyfill */
