@@ -7,8 +7,10 @@ and a [TYPO3 integration](https://packagist.org/packages/qbus/data-consent).
 
 ```bash
 $ npm install --save @qbus/data-consent
-# For TYPO3 installations:
+# For composer TYPO3 installations:
 $ composer require qbus/data-consent
+# For classic mode TYPO3 installations:
+$ git submodule add https://github.com/qbus-agentur/data-consent.git typo3conf/ext/data_consent
 ```
 
 ## Bundling CSS and JavaScript
