@@ -149,7 +149,7 @@ Consent.prototype.createDialog = function() {
             // Reopen the modal if it wasn't submitted.
             // This is ugly, but there is no other way to prevent
             // the modal from being closed by pressing the 'Escape' key.
-            if (!self.state.essential) {
+            if (!this.storage.get('data-consent')) {
                 self.dialog.showModal();
             }
             break;
