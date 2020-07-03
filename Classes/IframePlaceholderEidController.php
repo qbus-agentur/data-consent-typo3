@@ -56,6 +56,6 @@ class IframePlaceholderEidController
         $result = $view->render();
 
         $response->getBody()->write($result);
-        return $response;
+        return $response->withHeader('X-Robots-Tag', 'noindex');
     }
 }
