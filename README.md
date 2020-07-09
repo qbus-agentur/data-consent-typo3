@@ -1,6 +1,6 @@
 # Data Consent library based on Promises
 
-This library is both, a generic [JavaScript library](https://www.npmjs.com/package/@qbus/data-consent),
+This library is both a generic [JavaScript library](https://www.npmjs.com/package/@qbus/data-consent)
 and a [TYPO3 integration](https://packagist.org/packages/qbus/data-consent).
 
 ## Installation
