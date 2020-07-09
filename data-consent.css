@@ -92,6 +92,11 @@ dialog.data-consent form:after {
 dialog.data-consent:not([open]) {
 	display: none;
 }
+dialog.data-consent .data-consent-focus-catch {
+	height: 0;
+	overflow: hidden;
+	outline: 0;
+}
 dialog.data-consent section > svg {
 	width: auto;
 	height: 4em;
