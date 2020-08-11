@@ -5,7 +5,7 @@ import Storage from './storage'
 function Consent(options) {
     this.renderBanner = options.banner || false;
     this.essentialByDefault = options.essentialByDefault || true;
-    this.storage = new Storage('localstorage');
+    this.storage = new Storage(options.storage || null);
     this.listeners = [];
     this.fired = false;
     this.initialize = options.initialize || null;

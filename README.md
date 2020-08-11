@@ -99,3 +99,12 @@ consent.isAccepted('marketing').then(function(type) {
 });
 consent.launch();
 ```
+
+## Using third party storage backends
+
+```js
+import Consent from '@qbus/data-consent'
+import Cookies from 'js-cookie'
+var consent = new Consent({
+    storage: Cookies.withAttributes({ path: '/', domain: '.example.com', expires: 3650, secure: true })
+});
