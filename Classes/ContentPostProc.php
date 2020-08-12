@@ -1,8 +1,9 @@
 <?php
 namespace Qbus\DataConsent;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ContentPostProc
@@ -16,8 +17,10 @@ class ContentPostProc
     {
         $pObj = $params['pObj'];
 
-        if (class_exists(LanguageService::class)) {
-            // @todo: Test this in TYPO3 v9
+        if (class_exists(SiteLanguage::class) && isset($GLOBALS['TYPO3_REQUEST']) && $GLOBALS['TYPO3_REQUEST']->getAttribute('language') instanceof SiteLanguage) {
+            $language = $GLOBALS['TYPO3_REQUEST']->getAttribute('language');
+            $lang = $language->getTwoLetterIsoCode();
+        } elseif (class_exists(LanguageService::class)) {
             $lang = GeneralUtility::makeInstance(LanguageService::class)->lang;
             if ($lang === 'default') {
                 $lang = 'en';
