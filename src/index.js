@@ -64,6 +64,10 @@ Consent.prototype.launch = function() {
 
 Consent.prototype.forceOpen = function() {
     if (this.dialog === null) {
+        var storedState = this.storage.get('data-consent');
+        if (storedState) {
+            this.state = storedState;
+        }
         this.createDialog();
     } else {
         this.dialog.showModal();
