@@ -36,7 +36,7 @@ class IframePlaceholderEidController
         $type = 'marketing';
 
         $title = 'Content';
-        if ($escapedHost === 'www.youtube.com') {
+        if ($escapedHost === 'www.youtube.com' || $escapedHost === 'player.vimeo.com') {
             $title = 'Video';
         }
 
