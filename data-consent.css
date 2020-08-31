@@ -176,6 +176,7 @@ dialog.data-consent menu button:focus:before {
 	right: 0;
 	bottom: 0;
 	background: rgba(0,0,0,.1);
+	border-radius: var(--btn-border-radius, 0px);
 }
 dialog.data-consent menu button[value='accept-all'] {
 	background-color: #259D15;
