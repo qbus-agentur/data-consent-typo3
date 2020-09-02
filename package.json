@@ -26,6 +26,7 @@
     "esmify": "^2.1.1",
     "onchange": "^6.1.0",
     "rollup": "^2.0.6",
+    "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-terser": "^7.0.1"
   }
 }
