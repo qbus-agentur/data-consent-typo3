@@ -15,3 +15,6 @@
 # Temporary stuff
 /.htaccess export-ignore
 /index.html export-ignore
+
+*.min.js diff=minjs
+*.min.css diff=mincss
