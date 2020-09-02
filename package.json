@@ -8,8 +8,6 @@
   "scripts": {
     "build": "browserify -p esmify src/main.js -o bundle.js",
     "rollup": "rollup -c",
-    "postrollup": "terser --compress --mangle -o data-consent.min.js data-consent.js",
-    "min": "terser --compress --mangle  -o bundle.min.js bundle.js",
     "cleancss": "cleancss -O2 --format keep-break -o Resources/Public/Css/data-consent.min.css data-consent.css",
     "watch": "onchange 'src/*' --wait --verbose -- npm run build"
   },
@@ -30,6 +28,6 @@
     "minimist": "^1.2.5",
     "onchange": "^6.1.0",
     "rollup": "^2.0.6",
-    "terser": "^4.6.6"
+    "rollup-plugin-terser": "^7.0.1"
   }
 }
