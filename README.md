@@ -82,7 +82,7 @@ from being bundled:
 
 ```js
 // webpack.config.js
-module.exports {
+module.exports = {
   // …
   externals: {
     'es6-promise': 'Promise'
