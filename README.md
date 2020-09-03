@@ -90,7 +90,14 @@ module.exports {
 }
 ```
 
-## Pre-bundled JavaScript and CSS usage (hosted or CDN)
+## Pre-bundled JavaScript and CSS usage (hosted)
+
+> :warning: HEADS UP
+>
+> To avoid transatlantic exchanges of personal data,
+> you should not use unpkg.com as CDN in production.
+> Use it for testing, but download the assets and host
+> them directly for production.
 
 Serve the file `data-content.css` and `data-content.js` from your server or include them from
 [UNPKG](https://unpkg.com/@qbus/data-consent/).
