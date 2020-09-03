@@ -72,7 +72,23 @@ $ browserify -p esmify index.js -o bundle.js
 
 ### Usage with webpack
 
-TODO
+```js
+import DataConsent from '@qbus/data-consent'
+```
+
+Webpack will bundle the `es6-promise` polyfill and `dialog-polyfill` automatically.
+If you do *not* need support for IE11, you may exclude the `es6-promise` polyfill
+from being bundled:
+
+```js
+// webpack.config.js
+module.exports {
+  // …
+  externals: {
+    'es6-promise': 'Promise'
+  }
+}
+```
 
 ## Pre-bundled JavaScript and CSS usage (hosted or CDN)
 
