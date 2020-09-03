@@ -49,9 +49,9 @@ $ npm install --save-dev esmify
 Add the following contents to your index.js file:
 
 ```js
-var Consent = require('@qbus/data-consent').default;
+import DataConsent from '@qbus/data-consent';
 
-var consent = new Consent({
+var consent = new DataConsent({
     banner: false,
     functional: false
 });
@@ -126,8 +126,8 @@ consent.launch();
 ## Using third party storage backends
 
 ```js
-import Consent from '@qbus/data-consent'
+import DataConsent from '@qbus/data-consent'
 import Cookies from 'js-cookie'
-var consent = new Consent({
+var consent = new DataConsent({
     storage: Cookies.withAttributes({ path: '/', domain: '.example.com', expires: 3650, secure: true })
 });

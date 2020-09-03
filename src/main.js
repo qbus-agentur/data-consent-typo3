@@ -1,6 +1,6 @@
-var Consent = require('./index').default;
+import DataConsent from './index';
 
-var consent = new Consent({
+var consent = new DataConsent({
     banner: false,
     functional: false
 });
