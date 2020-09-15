@@ -6,7 +6,7 @@
   "module": "src/index.js",
   "style": "data-consent.css",
   "scripts": {
-    "build": "browserify -p esmify src/main.js -o demo/bundle.js",
+    "build": "browserify -p esmify demo/main.js -o demo/bundle.js",
     "rollup": "rollup -c",
     "cleancss": "cleancss -O2 --format keep-break -o Resources/Public/Css/data-consent.min.css data-consent.css",
     "watch": "onchange 'src/*' --wait --verbose -- npm run build"

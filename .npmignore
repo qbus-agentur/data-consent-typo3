@@ -1,8 +1,7 @@
-demo
+demo/
 .editorconfig
 data-consent.html
 Makefile
-src/main.js
 rollup.config.js
 
 .gitattributes

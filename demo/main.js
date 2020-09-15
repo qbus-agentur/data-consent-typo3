@@ -1,4 +1,4 @@
-import DataConsent from './index';
+import DataConsent from '../src/index';
 
 var consent = new DataConsent({
     banner: false,
