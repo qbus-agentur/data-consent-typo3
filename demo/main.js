@@ -15,7 +15,9 @@ consent.isAccepted('marketing').then(function(state) {
     console.log('Marketing is enabled');
 });
 
-consent.launch();
+if (document.body.classList.contains('js-data-consent-privacy-page') === false) {
+    consent.launch();
+}
 window.consent = consent;
 
 Array.prototype.forEach.call(
@@ -28,16 +30,26 @@ Array.prototype.forEach.call(
     }
 );
 
+window.openConsent = function() {
+	consent.forceOpen();
+};
 
-locationHashChanged = function() {
+
+
+/* For demo purposes only */
+var locationHashChanged = function() {
     var url = window.location.hash.substr(1)
+    var iframe = document.querySelector('iframe.demo-iframe')
+    if (!iframe) {
+        return;
+    }
     if (url) {
         if (!/^https?:\/\//i.test(url)) {
             url = 'https://' + url;
         }
-        document.querySelector('iframe.demo-iframe').setAttribute('src', url);
+        iframe.setAttribute('src', url);
     } else {
-        document.querySelector('iframe.demo-iframe').removeAttribute('src');
+        iframe.removeAttribute('src');
     }
 }
 window.addEventListener("hashchange", locationHashChanged);
