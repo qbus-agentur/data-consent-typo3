@@ -19,7 +19,7 @@ consent.launch();
 window.consent = consent;
 
 Array.prototype.forEach.call(
-    document.querySelectorAll('.open-data-consent-dialog'),
+    document.querySelectorAll('.js-data-consent-dialog-open'),
     function(el) {
         el.addEventListener('click', function(e) {
             e.preventDefault();
