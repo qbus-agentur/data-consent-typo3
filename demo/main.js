@@ -11,8 +11,11 @@ consent.isAccepted().then(function(state) {
 consent.isAccepted('essential').then(function(type) {
     console.log('Essential cookies have been enabled');
 });
-consent.isAccepted('marketing').then(function(state) {
+consent.isAccepted('marketing').then(function() {
     console.log('Marketing is enabled');
+    //$('iframe[data-src]').attr('src', function() {
+    //	return $(this).attr('data-src');
+    //});
 });
 
 if (document.body.classList.contains('js-data-consent-privacy-page') === false) {
