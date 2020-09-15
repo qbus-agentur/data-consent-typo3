@@ -13,8 +13,7 @@
 /rollup.config.js export-ignore
 
 # Temporary stuff
-/.htaccess export-ignore
-/index.html export-ignore
+/demo export-ignore
 
 *.min.js diff=minjs
 *.min.css diff=mincss

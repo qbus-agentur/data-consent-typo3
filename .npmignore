@@ -1,8 +1,5 @@
-bundle.*
-buildtime
+demo
 .editorconfig
-.htaccess
-index.html
 data-consent.html
 Makefile
 src/main.js
