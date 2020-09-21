@@ -297,7 +297,7 @@ dialog.data-consent #data-consent-options-show-details-marketing:checked ~ .noti
 dialog.data-consent .notice-content {
 	font-size: 0.8em;
 	background-color: #EDEDED;
-	background-color: var(--box-backround, #EDEDED);
+	background-color: var(--box-background, #EDEDED);
 	padding: 1em;
 	margin-top: 1.25em !important;
 	width: 100%;
