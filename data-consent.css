@@ -208,8 +208,7 @@ dialog.data-consent .notice {
 dialog.data-consent .notice svg {
 	height: 1.25em;
 	width: 1.25em;
-	position: relative;
-	top: 4px;
+	vertical-align: text-bottom;
 	transition: transform .35s ease;
 }
 dialog.data-consent .data-consent-accordion-state:checked + .data-consent-option .notice svg {
