@@ -165,12 +165,14 @@ dialog.data-consent menu button {
 	border-radius: var(--btn-border-radius, 0px);
 	cursor: pointer;
 	position: relative;
+	z-index: 0;
 }
 dialog.data-consent menu button:hover:before,
 dialog.data-consent menu button:focus:before {
 	content: '';
 	display: block;
 	position: absolute;
+	z-index: -1;
 	top: 0;
 	left: 0;
 	right: 0;
