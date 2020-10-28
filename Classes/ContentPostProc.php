@@ -29,16 +29,20 @@ class ContentPostProc
             $lang = $pObj->sys_language_isocode ?: ($pObj->lang ?: 'en');
         }
 
-        // @todo: Pass 'pkg' attribute as parameter to be able to override template path
+        $pkgArg = '';
+        if (isset($pObj->config['config']['tx_data_consent.']['templateProviderPackage'])) {
+            $pkgArg = '&pkg=' . rawurlencode($pObj->config['config']['tx_data_consent.']['templateProviderPackage']);
+        }
 
         $pObj->content = preg_replace_callback(
             '/(<iframe[^>]*) src="([^"]*)"/i',
-            function ($matches) use ($lang) {
+            function ($matches) use ($lang, $pkgArg) {
                 return sprintf(
-                    '%s src="/?eID=iframe_placeholder&original_url=%s&lang=%s" data-src="%s"',
+                    '%s src="/?eID=iframe_placeholder&original_url=%s&lang=%s%s" data-src="%s"',
                     $matches[1],
                     rawurlencode($matches[2]),
                     rawurlencode($lang),
+                    $pkgArg,
                     $matches[2]
                 );
             },
