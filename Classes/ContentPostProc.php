@@ -37,11 +37,14 @@ class ContentPostProc
             $lang = $pObj->sys_language_isocode ?: ($pObj->lang ?: 'en');
         }
 
-        // @todo: Pass 'pkg' attribute as parameter to be able to override template path
+        $pkgArg = '';
+        if (isset($pObj->config['config']['tx_data_consent.']['templateProviderPackage'])) {
+            $pkgArg = '&pkg=' . rawurlencode($pObj->config['config']['tx_data_consent.']['templateProviderPackage']);
+        }
 
         $pObj->content = preg_replace_callback(
             '/(<iframe[^>]*) src="([^"]*)"/i',
-            function ($matches) use ($lang, $handler) {
+            function ($matches) use ($lang, $handler, $pkgArg) {
                 $transatlantic = 0;
                 $host = parse_url($matches[2], PHP_URL_HOST);
                 if ($host !== false && in_array($host, [
@@ -54,12 +57,13 @@ class ContentPostProc
                 }
 
                 return sprintf(
-                    '%s src="%stransatlantic=%d&original_url=%s&lang=%s" data-src="%s"',
+                    '%s src="/?eID=iframe_placeholder&original_url=%s&lang=%s%s" data-src="%s"',
                     $matches[1],
                     $handler,
                     $transatlantic,
                     rawurlencode($matches[2]),
                     rawurlencode($lang),
+                    $pkgArg,
                     $matches[2]
                 );
             },

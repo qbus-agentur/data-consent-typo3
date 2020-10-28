@@ -51,9 +51,17 @@ class IframePlaceholderEidController
         ];
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $template = 'EXT:' . $templateProviderPackage . '/Resources/Private/Templates/Iframe/Placeholder.html';
-        // @todo PartialPaths
-        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($template));
+
+        $view->setPartialRootPaths([
+            GeneralUtility::getFileAbsFileName('EXT:data_consent/Resources/Private/Partials/'),
+            GeneralUtility::getFileAbsFileName('EXT:' . $templateProviderPackage . '/Resources/Private/Partials/')
+        ]);
+        $view->setTemplateRootPaths([
+            GeneralUtility::getFileAbsFileName('EXT:data_consent/Resources/Private/Templates/'),
+            GeneralUtility::getFileAbsFileName('EXT:' . $templateProviderPackage . '/Resources/Private/Templates/')
+        ]);
+        $view->setTemplate('DataConsent/IframePlaceholder');
+
         $view->assignMultiple($params);
         $result = $view->render();
 
