@@ -29,6 +29,7 @@ class IframePlaceholderEidController
         $url = isset($queryParams['original_url']) ? $queryParams['original_url'] : null;
         $lang = isset($queryParams['lang']) ? $queryParams['lang'] : null;
         $templateProviderPackage = isset($queryParams['pkg']) ? $queryParams['pkg'] : 'data_consent';
+        $transatlantic = isset($queryParams['transatlantic']) ? (bool)$queryParams['transatlantic'] : null;
 
         $escapedUrl = htmlspecialchars($url);
         $parsed  = parse_url($url);
@@ -45,6 +46,7 @@ class IframePlaceholderEidController
             'host' => $parsed['host'],
             'type' => $type,
             'title' => $title,
+            'transatlantic' => $transatlantic,
             'lang' => $lang
         ];
 

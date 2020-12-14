@@ -13,9 +13,10 @@ font: 1.4em/1.4 Verdana,Arial,Helvetica,sans-serif;
 background: #494949;
 color:rgba(255,255,255,.5);
 }
-p{text-align: center}
+p{text-align: center;margin-bottom:1em}
+p.small{font-size: .75em}
 a{color: inherit; text-decoration: underline}
-.buttons{display:flex;margin-top:2em;}
+.buttons{display:flex;margin-top:1em;justify-content:center}
 .button {
 font-size:.95em;
 border:1px solid currentColor;
@@ -45,14 +46,14 @@ body{font-size: .75em;}
 <f:else><f:render section="en" arguments="{_all}"/></f:else>
 </f:if>
 <f:section name="de">
-<p>Inhalte des externen Servers <strong> {host}</strong> wurden nicht geladen, da <strong>{type}</strong> cookies nicht aktiviert sind.</p>
+<p>Inhalte des externen Servers <strong> {host}</strong> wurden nicht geladen, da <strong>{type}</strong> Cookies <f:if condition="{transatlantic}" >mit Weitergabe an nicht EU-Staaten </f:if>abgelehnt wurden.</p>
 <div class="buttons">
-    <a class="button" href="javascript:parent.openConsent()">DSGVO Einstellungen</a>
+    <a class="button" href="javascript:parent.openConsent()">Daten Einstellungen</a>
     <a class="button" href="{url}">{title} jetzt laden</a>
 </div>
 </f:section>
 <f:section name="en">
-<p>Content from Host <strong> {host}</strong> has not been loaded as <strong>{type}</strong> cookies have not been enabled.
+<p>Content from Host <strong> {host}</strong> has not been loaded as <strong>{type}</strong> cookies <f:if condition="{transatlantic}" >with transatlantic data exchanges </f:if>have not been enabled.
 <!--You may <a href="javascript:parent.openConsent()">change data privacy settings</a> to permanently load this video or make a temporary <a href="{url}">exception</a>.-->
 </p>
 <div class="buttons">
