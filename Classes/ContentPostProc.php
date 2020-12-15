@@ -34,9 +34,21 @@ class ContentPostProc
         $pObj->content = preg_replace_callback(
             '/(<iframe[^>]*) src="([^"]*)"/i',
             function ($matches) use ($lang) {
+                $transatlantic = 0;
+                $host = parse_url($matches[2], PHP_URL_HOST);
+                if ($host !== false && in_array($host, [
+                    'www.youtube.com',
+                    'www.youtube-nocookie.com',
+                    'player.vimeo.com',
+                    'maps.google.com',
+                ])) {
+                    $transatlantic = 1;
+                }
+
                 return sprintf(
-                    '%s src="/?eID=iframe_placeholder&original_url=%s&lang=%s" data-src="%s"',
+                    '%s src="/?eID=iframe_placeholder&transatlantic=%d&original_url=%s&lang=%s" data-src="%s"',
                     $matches[1],
+                    $transatlantic,
                     rawurlencode($matches[2]),
                     rawurlencode($lang),
                     $matches[2]
