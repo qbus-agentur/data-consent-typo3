@@ -23,7 +23,7 @@ class IframePlaceholderEidController
      * @param  ResponseInterface      $response the available response
      * @return ResponseInterface      the modified response
      */
-    public function processRequest(ServerRequestInterface $request, ResponseInterface $response)
+    public function processRequest(ServerRequestInterface $request, ResponseInterface $response = null)
     {
         $queryParams = $request->getQueryParams();
         $url = isset($queryParams['original_url']) ? $queryParams['original_url'] : null;
@@ -57,6 +57,9 @@ class IframePlaceholderEidController
         $view->assignMultiple($params);
         $result = $view->render();
 
+        if ($response === null) {
+            $response = new \TYPO3\CMS\Core\Http\Response();
+        }
         $response->getBody()->write($result);
         return $response->withHeader('X-Robots-Tag', 'noindex');
     }
