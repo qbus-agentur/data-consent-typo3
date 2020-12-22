@@ -17,6 +17,14 @@ class ContentPostProc
     {
         $pObj = $params['pObj'];
 
+        $handler = '/?eID=iframe_placeholder&';
+
+        if (class_exists(\TYPO3\CMS\Core\Information\Typo3Version::class)) {
+            if ((new \TYPO3\CMS\Core\Information\Typo3Version)->getMajorVersion() >= 10) {
+                $handler = '/?prima=placeholder&';
+            }
+        }
+
         if (class_exists(SiteLanguage::class) && isset($GLOBALS['TYPO3_REQUEST']) && $GLOBALS['TYPO3_REQUEST']->getAttribute('language') instanceof SiteLanguage) {
             $language = $GLOBALS['TYPO3_REQUEST']->getAttribute('language');
             $lang = $language->getTwoLetterIsoCode();
@@ -33,7 +41,7 @@ class ContentPostProc
 
         $pObj->content = preg_replace_callback(
             '/(<iframe[^>]*) src="([^"]*)"/i',
-            function ($matches) use ($lang) {
+            function ($matches) use ($lang, $handler) {
                 $transatlantic = 0;
                 $host = parse_url($matches[2], PHP_URL_HOST);
                 if ($host !== false && in_array($host, [
@@ -46,8 +54,9 @@ class ContentPostProc
                 }
 
                 return sprintf(
-                    '%s src="/?eID=iframe_placeholder&transatlantic=%d&original_url=%s&lang=%s" data-src="%s"',
+                    '%s src="%stransatlantic=%d&original_url=%s&lang=%s" data-src="%s"',
                     $matches[1],
+                    $handler,
                     $transatlantic,
                     rawurlencode($matches[2]),
                     rawurlencode($lang),
