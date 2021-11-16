@@ -27,6 +27,11 @@
             "Qbus\\DataConsent\\": "Classes"
         }
     },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "data_consent"
+        }
+    },
     "replace": {
         "typo3-ter/data-consent": "self.version"
     }
