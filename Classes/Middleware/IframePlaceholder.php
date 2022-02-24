@@ -1,39 +1,57 @@
 <?php
-namespace Qbus\DataConsent;
+declare(strict_types=1);
+namespace Qbus\DataConsent\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use TYPO3\CMS\Core\Exception;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Routing\SiteRouteResult;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
-
 /**
- * IframePlaceholderEidController
- *
  * @author Benjamin Franzke <bfr@qbus.de>
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class IframePlaceholderEidController
+final class IframePlaceholder implements MiddlewareInterface
 {
-    /**
-     * Retrieves the image and redirect to the url
-     *
-     * @param  ServerRequestInterface $request  the current request object
-     * @param  ResponseInterface      $response the available response
-     * @return ResponseInterface      the modified response
-     */
-    public function processRequest(ServerRequestInterface $request, ResponseInterface $response = null)
+    private ResponseFactoryInterface $responseFactory;
+
+    public function __construct(
+        ResponseFactoryInterface $responseFactory
+    ) {
+        $this->responseFactory = $responseFactory;
+    }
+
+
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $queryParams = $request->getQueryParams();
-        $url = isset($queryParams['original_url']) ? $queryParams['original_url'] : null;
+        $normalizedParams = $request->getAttribute('normalizedParams');
+        //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($normalizedParams);
+        //exit;
+
+        $queryParams = $request->getQueryParams();
+        $prima = isset($queryParams['prima']) ? $queryParams['prima'] : null;
+        // @todo would love to use if ($request->getUri()->getPath() === '/prima/placeholder')
+        // but the route is not available automatically
+        /** @var SiteRouteResult $routing */
+        $routing = $request->getAttribute('routing');
+        if ($routing === null || $routing->getTail() !== 'iframe-placeholder') {
+            return $handler->handle($request);
+        }
+
+        $url = isset($queryParams['original_url']) ? $queryParams['original_url'] : '';
         $lang = isset($queryParams['lang']) ? $queryParams['lang'] : null;
         $templateProviderPackage = isset($queryParams['pkg']) ? $queryParams['pkg'] : 'data_consent';
         $transatlantic = isset($queryParams['transatlantic']) ? (bool)$queryParams['transatlantic'] : null;
 
         $escapedUrl = htmlspecialchars($url);
         $parsed  = parse_url($url);
-        $escapedHost = htmlspecialchars($parsed['host']);
+        $escapedHost = htmlspecialchars($parsed['host'] ?? '');
         $type = 'functional';
 
         $title = 'Content';
@@ -43,7 +61,7 @@ class IframePlaceholderEidController
 
         $params = [
             'url' => $url,
-            'host' => $parsed['host'],
+            'host' => $parsed['host'] ?? '',
             'type' => $type,
             'title' => $title,
             'transatlantic' => $transatlantic,
@@ -65,10 +83,12 @@ class IframePlaceholderEidController
         $view->assignMultiple($params);
         $result = $view->render();
 
-        if ($response === null) {
-            $response = new \TYPO3\CMS\Core\Http\Response();
-        }
+        $response = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'text/html; charset=utf-8')
+            ->withHeader('X-Robots-Tag', 'noindex');
         $response->getBody()->write($result);
-        return $response->withHeader('X-Robots-Tag', 'noindex');
+
+        return $response;
     }
 }
