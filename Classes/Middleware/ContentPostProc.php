@@ -46,33 +46,36 @@ final class ContentPostProc implements MiddlewareInterface
             $pkgArg = '&pkg=' . rawurlencode($tsfe->config['config']['tx_data_consent.']['templateProviderPackage']);
         }
 
-        $newContent = preg_replace_callback(
-            '/(<iframe[^>]*) src="([^"]*)"/i',
-            function ($matches) use ($lang, $handlerUri, $pkgArg) {
-                $transatlantic = 0;
-                $host = parse_url($matches[2], PHP_URL_HOST);
-                if ($host !== false && in_array($host, [
-                    'www.youtube.com',
-                    'www.youtube-nocookie.com',
-                    'player.vimeo.com',
-                    'maps.google.com',
-                ])) {
-                    $transatlantic = 1;
-                }
+        $newContent = $content;
+        foreach (['"', '\''] as $quote) {
+            $newContent = preg_replace_callback(
+                '/(<iframe[^>]*) src=' . $quote . '([^' . $quote . ']*)' . $quote . '/i',
+                function ($matches) use ($lang, $handlerUri, $pkgArg, $quote) {
+                    $transatlantic = 0;
+                    $host = parse_url($matches[2], PHP_URL_HOST);
+                    if ($host !== false && in_array($host, [
+                        'www.youtube.com',
+                        'www.youtube-nocookie.com',
+                        'player.vimeo.com',
+                        'maps.google.com',
+                    ])) {
+                        $transatlantic = 1;
+                    }
 
-                return sprintf(
-                    '%s src="%s?transatlantic=%s&original_url=%s&lang=%s%s" data-src="%s"',
-                    $matches[1],
-                    $handlerUri,
-                    $transatlantic,
-                    rawurlencode($matches[2]),
-                    rawurlencode($lang),
-                    $pkgArg,
-                    $matches[2]
-                );
-            },
-            $content
-        );
+                    return sprintf(
+                        '%s src="%s?transatlantic=%s&original_url=%s&lang=%s%s" data-src="%s"',
+                        $matches[1],
+                        $handlerUri,
+                        $transatlantic,
+                        rawurlencode($matches[2]),
+                        rawurlencode($lang),
+                        $pkgArg,
+                        $matches[2]
+                    );
+                },
+                $newContent
+            );
+        }
 
         return $response->withBody(
             $this->streamFactory->createStream($newContent)
