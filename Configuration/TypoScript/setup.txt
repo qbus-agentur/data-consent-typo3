@@ -1,11 +1,10 @@
-[globalVar = LIT:1 = {$config.tx_dataconsent_enable_css}]
+["{$config.tx_dataconsent_enable_css}" == "1"]
 page.includeCSSLibs.1584439800 = EXT:data_consent/Resources/Public/Css/data-consent.min.css
 page.includeCSSLibs.1584439800 {
   media = screen
 }
 [global]
-
-[globalVar = LIT:1 = {$config.tx_dataconsent_enable_js}]
+["{$config.tx_dataconsent_enable_js}" == "1"]
 page.includeJSFooterlibs.1584439800 = EXT:data_consent/Resources/Public/JavaScript/es6-promise.auto.min.js
 page.includeJSFooterlibs.1584439801 = EXT:data_consent/Resources/Public/JavaScript/data-consent.min.js
 [global]

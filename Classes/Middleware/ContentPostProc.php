@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Qbus\DataConsent\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
@@ -7,7 +9,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 
 /**
  * @author Benjamin Franzke <bfr@qbus.de>
@@ -29,7 +30,7 @@ final class ContentPostProc implements MiddlewareInterface
 
         $content = $response->getBody()->__toString();
 
-        if (strpos($content, '<iframe') === false) {
+        if (!str_contains($content, '<iframe')) {
             return $response;
         }
 
