@@ -7,10 +7,10 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Benjamin Franzke',
     'author_email' => 'bfr@qbus.de',
     'state' => 'stable',
-    'version' => '0.3.1',
+    'version' => '0.4.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '10.0.0-11.5.99',
+            'typo3' => '12.4.0-12.4.99',
         ],
         'conflicts' => [
         ],
